@@ -69,7 +69,7 @@ function SignUpForm() {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Sign Up
           </Button>
         </Form.Item>
       </Form>
