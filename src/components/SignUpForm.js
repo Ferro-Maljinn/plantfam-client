@@ -1,14 +1,20 @@
 import { Form, Input, Button, Checkbox } from "antd";
-/* import { useState } from "react"; */
+import axios from "axios";
+import { useState, } from "react";
+import { useNavigate } from "react-router";
+import { API_URL } from "../config";
 
-/* const defaultFormState = {
+const defaultFormState = {
   name: "",
   email: "",
   password: "",
-}; */
+};
 
-function SignUpForm() {
-/*   const [formState, setFormState] = useState(defaultFormState);
+function SignUpForm( ) {
+
+  const navigate = useNavigate();
+
+  const [formState, setFormState] = useState(defaultFormState);
 
   const handleFormInput = (event) => {
     console.log(event.target.value);
@@ -16,19 +22,22 @@ function SignUpForm() {
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (elem) => {
+  const handleSubmit = async (event) => {
     console.log("Hello there submit-handler");
-    elem.preventDefault();
-    setFormState(defaultFormState);
+    event.preventDefault();
+    console.log(formState)
+    let response = await axios.post(`${API_URL}/signup`, formState, {withCredentials: true});
+    console.log(response.data)
+    await setFormState(defaultFormState);
+    navigate("/")
   };
- */
+
 
   return (
     <div>
       <h2>Sign Up</h2>
 
       <Form
-        //onsubmit={handleSubmit}
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
@@ -37,26 +46,26 @@ function SignUpForm() {
       >
         <Form.Item
           label="Username"
-          name="name"
+          type="name"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
-          <Input />
+          <Input name="name" value={formState.name} onChange={handleFormInput}/>
         </Form.Item>
 
         <Form.Item
           label="Email"
-          name="email"
+          type="email"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
-          <Input />
+         <Input name="email" value={formState.email} onChange={handleFormInput}/>
         </Form.Item>
 
         <Form.Item
           label="Password"
-          name="password"
+          type="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password />
+          <Input.Password name="password" value={formState.password} onChange={handleFormInput}/>
         </Form.Item>
 
         <Form.Item
@@ -68,7 +77,7 @@ function SignUpForm() {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button onClick={handleSubmit} type="primary" htmlType="submit">
             Sign Up
           </Button>
         </Form.Item>

@@ -1,7 +1,37 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from "antd";
+import { useState, } from "react";
+import { useNavigate } from "react-router";
+import axios from 'axios';
+import { API_URL } from "../config";
+
+const defaultFormState = {
+  name: "",
+  password: "",
+};
 
 function LogInForm() {
+
+  const navigate = useNavigate();
+
+  const [logInState, setLoginState] = useState(defaultFormState);
+
+  const handleLoginInput = (event) => {
+    // console.log(event.target.value);
+    // console.log(event.target.name);
+    setLoginState({ ...logInState, [event.target.name]: event.target.value });
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log(logInState);
+    let response = await axios.post(`${API_URL}/Login`, logInState, {
+      withCredentials: true,
+    });
+    console.log(response.data, "response data");
+    await setLoginState(defaultFormState);
+    navigate("/")
+  };
 
   return (
     <div>
@@ -21,7 +51,7 @@ function LogInForm() {
       >
         <Form.Item
           label="Username"
-          name="username"
+          type="name"
           rules={[
             {
               required: true,
@@ -29,12 +59,12 @@ function LogInForm() {
             },
           ]}
         >
-          <Input />
+          <Input name="name" value={logInState.name} onChange={handleLoginInput}/>
         </Form.Item>
 
         <Form.Item
           label="Password"
-          name="password"
+          type="password"
           rules={[
             {
               required: true,
@@ -42,7 +72,7 @@ function LogInForm() {
             },
           ]}
         >
-          <Input.Password />
+          <Input.Password name="password" value={logInState.password} onChange={handleLoginInput}/>
         </Form.Item>
 
         <Form.Item
@@ -62,7 +92,7 @@ function LogInForm() {
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button onClick={handleLogin} type="primary" htmlType="submit">
             Log In
           </Button>
         </Form.Item>
@@ -71,4 +101,4 @@ function LogInForm() {
   );
 }
 
-export default LogInForm
+export default LogInForm;
