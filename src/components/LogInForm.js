@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { useState, } from "react";
 import { useNavigate } from "react-router";
 import axios from 'axios';
+import { API_URL } from "./config";
 
 const defaultFormState = {
   name: "",
