@@ -1,3 +1,4 @@
+import { API_URL } from "./config";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
@@ -10,7 +11,7 @@ import Plantform from "./components/Plantform";
 import axios from "axios";
 import { useNavigate } from "react-router";
 axios.defaults.withCredentials = true;
-import { API_URL } from "./config";
+
 
 function App() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function App() {
 
   const handleAddPlant = async (event) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/plantform");
+      const response = await axios.get(`${API_URL}/plantform`);
       console.log(response);
       navigate("/plantform");
     } catch (err) {
@@ -48,7 +49,7 @@ function App() {
   };
 
   const handlelogout = async (event) => {
-    await axios.post("http://localhost:5000/api/logout");
+    await axios.post(`${API_URL}/logout`);
     navigate("/");
   };
 
