@@ -4,6 +4,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import SignUpForm from "./components/SignUpForm";
 import LogInForm from "./components/LogInForm";
+import Plantdetails from "./components/Plantdetails";
 import { Layout } from "antd";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -11,7 +12,6 @@ import Plantform from "./components/Plantform";
 import axios from "axios";
 import { useNavigate } from "react-router";
 axios.defaults.withCredentials = true;
-
 
 function App() {
   const navigate = useNavigate();
@@ -76,6 +76,9 @@ function App() {
         <Route path="/signup" element={<SignUpForm />} />
 
         <Route path="/login" element={<LogInForm />} />
+
+        <Route path="/plantdetails" element={<Plantdetails />} />
+
         {/* </Layout> */}
       </Routes>
     </div>
