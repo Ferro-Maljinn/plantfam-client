@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-function Navbar( { handlelogout }) {
+function Navbar( { handlelogout, handleAddPlant }) {
   return (
     <div>
-    <button>Signup</button>
-    <button>Login</button>
-    <button>Trade plant</button>
+    <Link to="/signup"> Signup </Link>
+    <Link to="/login"> Login </Link>
+    <button onClick={handleAddPlant} type="primary">List plant</button>
     <button onClick={handlelogout} type="primary">Logout</button>
     </div>
   )
