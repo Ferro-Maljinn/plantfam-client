@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { API_URL } from "../config";
 
 const defaultPlantFormState = {
   image: "",
@@ -29,16 +30,14 @@ function Plantform({ allPlants, setAllPlants }) {
 
   const handleAddNewPlant = async (event) => {
     event.preventDefault();
-    console.log(allPlants, "this is allplants");
-    let response = await axios.post(
-      "http://localhost:5000/api/plantform",
-      newPlantFormstate,
-      { withCredentials: true }
-    );
-    console.log(response, "this is new plant form state");
-    await setAllPlants([...allPlants, newPlantFormstate]);
-    navigate("/profilepage");
-  };
+    console.log(allPlants, "this is allplants")
+    let response = await axios.post(`${API_URL}/plantform`, newPlantFormstate, {
+      withCredentials: true,
+    });
+    console.log(response, "this is new plant form state")
+    await setAllPlants([...allPlants, newPlantFormstate])
+    navigate("/profilepage")
+};
 
   return (
     <form onSubmit={handleAddNewPlant}>

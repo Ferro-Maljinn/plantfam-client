@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { useState, } from "react";
 import { useNavigate } from "react-router";
 import axios from 'axios';
+import { API_URL } from "../config";
 
 const defaultFormState = {
   name: "",
@@ -24,7 +25,9 @@ function LogInForm() {
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log(logInState);
-    let response = await axios.post("http://localhost:5000/api/login", logInState, {withCredentials: true});
+    let response = await axios.post(`${API_URL}/Login`, logInState, {
+      withCredentials: true,
+    });
     console.log(response.data, "response data");
     await setLoginState(defaultFormState);
     navigate("/")
