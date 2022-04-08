@@ -2,6 +2,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 import axios from "axios";
 import { useState, } from "react";
 import { useNavigate } from "react-router";
+import { API_URL } from "./config";
 
 const defaultFormState = {
   name: "",
@@ -25,7 +26,7 @@ function SignUpForm( ) {
     console.log("Hello there submit-handler");
     event.preventDefault();
     console.log(formState)
-    let response = await axios.post("http://localhost:5000/api/signup", formState, {withCredentials: true});
+    let response = await axios.post(`${API_URL}/signup`, formState, {withCredentials: true});
     console.log(response.data)
     await setFormState(defaultFormState);
     navigate("/")

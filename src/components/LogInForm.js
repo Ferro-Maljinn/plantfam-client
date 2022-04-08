@@ -24,7 +24,9 @@ function LogInForm() {
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log(logInState);
-    let response = await axios.post("http://localhost:5000/api/login", logInState, {withCredentials: true});
+    let response = await axios.post(`${API_URL}/Login`, logInState, {
+      withCredentials: true,
+    });
     console.log(response.data, "response data");
     await setLoginState(defaultFormState);
     navigate("/home")

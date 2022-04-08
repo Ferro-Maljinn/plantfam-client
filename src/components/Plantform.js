@@ -27,7 +27,9 @@ function Plantform({ allPlants, setAllPlants }) {
 const handleAddNewPlant = async (event) =>{
     event.preventDefault();
     console.log(allPlants, "this is allplants")
-    let response = await axios.post("http://localhost:5000/api/plantform", newPlantFormstate,  {withCredentials: true});
+    let response = await axios.post(`${API_URL}/plantform`, newPlantFormstate, {
+      withCredentials: true,
+    });
     console.log(response, "this is new plant form state")
     await setAllPlants([...allPlants, newPlantFormstate])
     navigate("/profilepage")

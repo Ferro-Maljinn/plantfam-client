@@ -8,15 +8,17 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Plantform from './components/Plantform';
 import axios from 'axios';
+import { API_URL } from "./config";
+
 
 function App() {
   const [allPlants, setAllPlants] = useState([]);
 
-  // FETCH EXISTING PLANTS FROM DATABASE, BUGFIXING TO BE DONE 
- 
+  // FETCH EXISTING PLANTS FROM DATABASE, BUGFIXING TO BE DONE
+
   // useEffect(() => {
   //   async function fetchAllPlants() {
-  //     const response = await fetch("http://localhost:5000/api");
+  //     const response = await fetch(`${API_URL}/example`);
   //     const data = await response.json();
   //     if(!data) return;
   //     setAllPlants(data);
@@ -28,35 +30,38 @@ function App() {
   //   setAllPlants([...allPlants, NewPlant])
   // };
 
-
   const handlelogout = async (event) => {
     //NOT YET WORKING BC SESSIONS DONT WORK YET (PROBABLY?) , BUT CONNECTED TO BUTTON
-    
-    // let response = await axios.post("http://localhost:5000/api/logout",  {withCredentials: true});
-    console.log("this is logging out ")
-  }
 
+    // let response = await axios.post(`${API_URL}/logout`,  {withCredentials: true});
+    console.log("this is logging out ");
+  };
 
   return (
     <div>
-   <Navbar handlelogout={handlelogout}/>
-   <Routes>
-    {/* <Layout> */}
-   
-    <Route path="/" element={<Home />} />
-    {/* CONNECTED TO FETCHING PLANTS FROM DB 
+      <Navbar handlelogout={handlelogout} />
+      <Routes>
+        {/* <Layout> */}
+
+        <Route path="/" element={<Home />} />
+        {/* CONNECTED TO FETCHING PLANTS FROM DB 
 
     {allPlants.map((plant, i) => {
       return <plantdetails key={plant.name + i} plant={plant} />
     })} */}
 
-      <Route path="/plantform" element={<Plantform allPlants={allPlants} setAllPlants={setAllPlants} />} />
+        <Route
+          path="/plantform"
+          element={
+            <Plantform allPlants={allPlants} setAllPlants={setAllPlants} />
+          }
+        />
 
-      <Route path="/signup" element={<SignUpForm />} />
-      
-      <Route path="/login" element={<LogInForm />} />
-    {/* </Layout> */}
-    </Routes>
+        <Route path="/signup" element={<SignUpForm />} />
+
+        <Route path="/login" element={<LogInForm />} />
+        {/* </Layout> */}
+      </Routes>
     </div>
   );
 }
