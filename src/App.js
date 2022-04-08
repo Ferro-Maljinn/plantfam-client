@@ -8,8 +8,12 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Plantform from './components/Plantform';
 import axios from 'axios';
+import { useNavigate } from "react-router";
+axios.defaults.withCredentials = true;
 
 function App() {
+  const navigate = useNavigate();
+
   const [allPlants, setAllPlants] = useState([]);
 
   // FETCH EXISTING PLANTS FROM DATABASE, BUGFIXING TO BE DONE 
@@ -28,18 +32,32 @@ function App() {
   //   setAllPlants([...allPlants, NewPlant])
   // };
 
-
-  const handlelogout = async (event) => {
-    //NOT YET WORKING BC SESSIONS DONT WORK YET (PROBABLY?) , BUT CONNECTED TO BUTTON
-    
-    // let response = await axios.post("http://localhost:5000/api/logout",  {withCredentials: true});
-    console.log("this is logging out ")
+  const handleAddPlant = async (event) => {
+    try{
+     const response = await axios.get("http://localhost:5000/api/plantform");
+    console.log(response)
+    navigate("/plantform")
+    }
+    catch(err){
+      console.error(err, "error from handleAddPlant")
+      console.log(err.response.data, "error from handleAddPlant")
+      if(err.response.status === 401) {
+        navigate("/login")
+      }
+    }
   }
+
+
+  const handlelogout = async (event) => {    
+    await axios.post("http://localhost:5000/api/logout");
+    navigate("/")
+  }
+
 
 
   return (
     <div>
-   <Navbar handlelogout={handlelogout}/>
+   <Navbar handlelogout={handlelogout} handleAddPlant={handleAddPlant}/>
    <Routes>
     {/* <Layout> */}
    

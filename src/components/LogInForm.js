@@ -27,7 +27,7 @@ function LogInForm() {
     let response = await axios.post("http://localhost:5000/api/login", logInState, {withCredentials: true});
     console.log(response.data, "response data");
     await setLoginState(defaultFormState);
-    navigate("/home")
+    navigate("/")
   };
 
   return (
@@ -57,14 +57,6 @@ function LogInForm() {
           ]}
         >
           <Input name="name" value={logInState.name} onChange={handleLoginInput}/>
-        </Form.Item>
-
-        <Form.Item
-          label="Email"
-          type="email"
-          rules={[{ required: true, message: "Please input your username!" }]}
-        >
-         <Input name="email" value={logInState.email} onChange={handleLoginInput}/>
         </Form.Item>
 
         <Form.Item
