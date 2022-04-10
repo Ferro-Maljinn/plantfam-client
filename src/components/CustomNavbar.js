@@ -19,23 +19,23 @@ export default function CustomNavbar({ userIsLoggedIn, setUserIsLoggedIn }) {
   };
 
   return (
-      
+    <div>
+      {userIsLoggedIn ? (
+        <>
+          <Link to="/"> Home </Link>
+          <Link to="/profile"> Profile </Link>
+          <Link to="/add-plant"> Create Plant </Link>
 
-      <div>
-        {userIsLoggedIn ? (
-          <>
-            <Link to="/"> Home </Link>
-            <Link to="/profile"> Profile </Link>
-            <button onClick={handleLogOut} type="primary">
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/signup"> Signup </Link>
-            <Link to="/login"> Login </Link>
-          </>
-        )}
-      </div> 
+          <button onClick={handleLogOut} type="primary">
+            Logout
+          </button>
+        </>
+      ) : (
+        <>
+          <Link to="/signup"> Signup </Link>
+          <Link to="/login"> Login </Link>
+        </>
+      )}
+    </div>
   );
 }

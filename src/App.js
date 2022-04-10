@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import LogInPage from "./pages/LogInPage";
 import ProfilePage from "./pages/ProfilePage";
+import AddPlantPage from "./pages/AddPlantPage/AddPlantPage";
 
 // -------------- COMPONENTS
 import CustomNavbar from "./components/CustomNavbar";
@@ -31,16 +32,28 @@ export default function App() {
 
   return (
     <div>
-      <CustomNavbar userIsLoggedIn={userIsLoggedIn} setUserIsLoggedIn={setUserIsLoggedIn}/>
+      <CustomNavbar
+        userIsLoggedIn={userIsLoggedIn}
+        setUserIsLoggedIn={setUserIsLoggedIn}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
 
         {userIsLoggedIn ? (
-          <Route path="/profile" element={<ProfilePage />} />
+          <>
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/add-plant" element={<AddPlantPage />} />
+          </>
         ) : (
           <>
-            <Route path="/signup" element={<SignUpPage setUserIsLoggedIn={setUserIsLoggedIn} />} />
-            <Route path="/login" element={<LogInPage setUserIsLoggedIn={setUserIsLoggedIn} />} />
+            <Route
+              path="/signup"
+              element={<SignUpPage setUserIsLoggedIn={setUserIsLoggedIn} />}
+            />
+            <Route
+              path="/login"
+              element={<LogInPage setUserIsLoggedIn={setUserIsLoggedIn} />}
+            />
           </>
         )}
       </Routes>

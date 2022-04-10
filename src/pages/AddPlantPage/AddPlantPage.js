@@ -1,7 +1,11 @@
-import axios from "axios";
 import React, { useState } from "react";
+import "./AddPlantPage.css";
+
+import axios from "axios";
 import { useNavigate } from "react-router";
-import { API_URL } from "../config";
+import { API_URL } from "../../config";
+
+import { Button } from "antd";
 
 const defaultPlantFormState = {
   image: "",
@@ -28,19 +32,34 @@ function AddPlantPage({ allPlants, setAllPlants }) {
     });
   };
 
-  const handleAddNewPlant = async (event) => {
-    event.preventDefault();
-    console.log(allPlants, "this is allplants")
-    let response = await axios.post(`${API_URL}/plantform`, newPlantFormstate, {
-      withCredentials: true,
-    });
-    console.log(response, "this is new plant form state")
-    await setAllPlants([...allPlants, newPlantFormstate])
-    navigate("/profilepage")
-};
+  // const handleAddNewPlant = async (event) => {
+  //   event.preventDefault();
+  //   await axios
+  //     .post(`${API_URL}/plantform`, newPlantFormstate, {
+  //       withCredentials: true,
+  //     })
+  //     .then(function (response) {
+  //       console.log("arrived");
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
+
+    const handleAddNewPlant = async (event) => {
+      event.preventDefault();
+      console.log(allPlants, "this is allplants")
+      let response = await axios.post(`${API_URL}/plantform`, newPlantFormstate, {
+        withCredentials: true,
+      });
+      console.log(response, "this is new plant form state")
+      await setAllPlants([...allPlants, newPlantFormstate])
+      navigate("/profilepage")
+  };
 
   return (
-    <form onSubmit={handleAddNewPlant}>
+    <form onSubmit={handleAddNewPlant} className="form-container">
       <label>Image</label>
       <input
         name="image"
@@ -89,7 +108,9 @@ function AddPlantPage({ allPlants, setAllPlants }) {
         value={newPlantFormstate.soilType}
         onChange={handleNewPlantInput}
       />
-      <button type="submit">List Plant</button>
+      <Button onClick={handleAddNewPlant} type="primary" htmlType="submit">
+        List Plants
+      </Button>
     </form>
   );
 }
