@@ -36,7 +36,7 @@ function App() {
 
   const handleAddPlant = async (event) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/plantform");
+      const response = await axios.get(`${API_URL}/plantform`);
       console.log(response);
       navigate("/plantform");
     } catch (err) {
@@ -49,7 +49,7 @@ function App() {
   };
 
   const handlelogout = async (event) => {
-    await axios.post("http://localhost:5000/api/logout");
+    await axios.post(`${API_URL}/logout`);
     navigate("/");
   };
 
