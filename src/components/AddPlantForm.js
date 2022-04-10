@@ -14,7 +14,7 @@ const defaultPlantFormState = {
   soilType: "",
 };
 
-function Plantform({ allPlants, setAllPlants }) {
+function AddPlantPage({ allPlants, setAllPlants }) {
   const navigate = useNavigate();
 
   const [newPlantFormstate, setNewPlantFormstate] = useState(
@@ -94,4 +94,4 @@ function Plantform({ allPlants, setAllPlants }) {
   );
 }
 
-export default Plantform;
+export default AddPlantPage;

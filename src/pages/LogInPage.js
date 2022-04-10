@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import { useState, } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
-import axios from 'axios';
+import axios from "axios";
 import { API_URL } from "../config";
 
 const defaultFormState = {
@@ -10,27 +10,29 @@ const defaultFormState = {
   password: "",
 };
 
-function LogInForm() {
-
+export default function LogInPage({ setUserIsLoggedIn }) {
   const navigate = useNavigate();
 
   const [logInState, setLoginState] = useState(defaultFormState);
+  const [error, setError] = useState(null);
 
   const handleLoginInput = (event) => {
-    // console.log(event.target.value);
-    // console.log(event.target.name);
     setLoginState({ ...logInState, [event.target.name]: event.target.value });
   };
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log(logInState);
-    let response = await axios.post(`${API_URL}/Login`, logInState, {
-      withCredentials: true,
-    });
-    console.log(response.data, "response data");
-    await setLoginState(defaultFormState);
-    navigate("/")
+    setError(null);
+    try {
+      await axios.post(`${API_URL}/login`, logInState, {
+        withCredentials: true,
+      });
+      await setLoginState(defaultFormState);
+      await setUserIsLoggedIn(true);
+      navigate("/");
+    } catch (err) {
+      setError("Username or password wrong, please try again");
+    }
   };
 
   return (
@@ -59,7 +61,11 @@ function LogInForm() {
             },
           ]}
         >
-          <Input name="name" value={logInState.name} onChange={handleLoginInput}/>
+          <Input
+            name="name"
+            value={logInState.name}
+            onChange={handleLoginInput}
+          />
         </Form.Item>
 
         <Form.Item
@@ -72,7 +78,11 @@ function LogInForm() {
             },
           ]}
         >
-          <Input.Password name="password" value={logInState.password} onChange={handleLoginInput}/>
+          <Input.Password
+            name="password"
+            value={logInState.password}
+            onChange={handleLoginInput}
+          />
         </Form.Item>
 
         <Form.Item
@@ -92,6 +102,10 @@ function LogInForm() {
             span: 16,
           }}
         >
+          {/* if try catch from handleLogin throws an error, 
+          then the p tag will be displayed with an error message */}
+          {error && <h1>{error}</h1>}
+
           <Button onClick={handleLogin} type="primary" htmlType="submit">
             Log In
           </Button>
@@ -100,5 +114,3 @@ function LogInForm() {
     </div>
   );
 }
-
-export default LogInForm;

@@ -1,0 +1,28 @@
+.plant-card {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+  border: solid 1px black;
+  margin: 22px;
+}
+
+.plant-img {
+  height: 175px;
+  width: 175px;
+  border-radius: 100%;
+}
+
+.plant-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  align-content: stretch;
+  width: 200px;
+  padding: 20px;
+}

@@ -10,8 +10,7 @@ const defaultFormState = {
   password: "",
 };
 
-function SignUpForm( ) {
-
+export default function SignUpForm({setUserIsLoggedIn}) {
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState(defaultFormState);
@@ -29,6 +28,7 @@ function SignUpForm( ) {
     let response = await axios.post(`${API_URL}/signup`, formState, {withCredentials: true});
     console.log(response.data)
     await setFormState(defaultFormState);
+    setUserIsLoggedIn(true)
     navigate("/")
   };
 
@@ -86,4 +86,3 @@ function SignUpForm( ) {
   );
 }
 
-export default SignUpForm;
