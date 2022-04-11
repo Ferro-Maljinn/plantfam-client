@@ -7,7 +7,7 @@ console.log(allPlants, "Here are all plants from home")
   return (
     <div className="plants-container">
       {allPlants.map((plant, i) => {
-        return <PlantCard allPlants={allPlants} plant={plant} key={plant.englishName + i} />;
+        return <PlantCard plant={plant} key={plant.englishName + i} />;
       })}
     </div>
   );

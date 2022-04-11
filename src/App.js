@@ -38,12 +38,10 @@ export default function App() {
     }
     fetchPlantsList();
   }, []);
+
   if (allPlants === null) {
     return <p>No plants currently listed</p>;
   }
-
-  console.log(allPlants, "this is all plants from appjs")
-
 
   const handlelogout = async (event) => {
     await axios.post(`${API_URL}/logout`);
