@@ -62,7 +62,7 @@ export default function Plantdetails() {
   if (!singlePlant._id) {
     return <p>Loading..</p>;
   } else {
-    // console.log("charliepizza", singlePlant);
+    console.log("charliepizza", singlePlant);
   }
 
   return (

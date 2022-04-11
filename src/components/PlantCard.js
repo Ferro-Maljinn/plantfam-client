@@ -2,7 +2,7 @@ import React from "react";
 import "./PlantCard.css";
 
 import { Button } from "antd";
-import axios from "axios"; 
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../config";
 
@@ -32,16 +32,13 @@ export default function PlantCard({ plant }) {
   //       }
   //     }
 
-
   async function handleDeletePlant(plantId) {
     try {
-      await axios.delete(
-        `${API_URL}/deleteplant/${plantId}`,
-        {
-          params: { plantId: plantId },
-        }
-      );
-      // TODO Update allPlant/rerender 
+      console.log("arrived to delete");
+      await axios.delete(`${API_URL}/deleteplant/${plantId}`, {
+        params: { plantId: plantId },
+      });
+      // TODO Update allPlant/rerender
       // setSinglePlant({
       //   ...singlePlant,
       // });
@@ -49,7 +46,6 @@ export default function PlantCard({ plant }) {
       console.log(err.response.data.errorMessage);
     }
   }
-
 
   return (
     <div className="plant-card">
