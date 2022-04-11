@@ -38,7 +38,6 @@ export default function Plantdetails() {
   }, [params]);
 
   const handleUpdatInput = (event) => {
-    console.log(event.target.value);
     setSinglePlant({
       ...singlePlant,
       [event.target.name]: event.target.value,
@@ -63,8 +62,7 @@ export default function Plantdetails() {
     return <p>Loading..</p>;
   } else {
     console.log("charliepizza", singlePlant);
-  }
-
+  } 
   return (
     <div>
       <h1>Plant Details</h1>
