@@ -1,15 +1,17 @@
-import { API_URL } from "../config";
 import React from "react";
-import { Button } from "antd";
-import axios from "axios";
-import { Link } from "react-router-dom";
-export default function PlantCard({ plant }) {
+import "./PlantCard.css";
 
+import { Button } from "antd";
+import axios from "axios"; 
+import { Link } from "react-router-dom";
+import { API_URL } from "../config";
+
+export default function PlantCard({ plant }) {
   // const handleUpdate = async (e) => {
   //    e.preventDefault();
-    
+
   //       try{
-          
+
   //         let formData = new FormData();
   //         formData.append();
 
@@ -31,6 +33,24 @@ export default function PlantCard({ plant }) {
   //     }
 
 
+  async function handleDeletePlant(plantId) {
+    try {
+      await axios.delete(
+        `${API_URL}/deleteplant/${plantId}`,
+        {
+          params: { plantId: plantId },
+        }
+      );
+      // TODO Update allPlant/rerender 
+      // setSinglePlant({
+      //   ...singlePlant,
+      // });
+    } catch (err) {
+      console.log(err.response.data.errorMessage);
+    }
+  }
+
+
   return (
     <div className="plant-card">
       <img className="plant-img" src={plant.image} alt="Some Plant" />
@@ -38,11 +58,18 @@ export default function PlantCard({ plant }) {
         <h2>{plant.englishName}</h2>
         <p>{plant.description}</p>
       </div>
-      <Link to={plant._id} > <Button type="danger" htmlType="submit">
-         Update
-      </Button>  </Link> 
-      <Button type="danger" htmlType="submit">
-        Delete
+      <Link to={plant._id}>
+        {" "}
+        <Button type="danger" htmlType="submit">
+          Update
+        </Button>{" "}
+      </Link>
+      <Button
+        onClick={() => handleDeletePlant(plant._id)}
+        type="primary"
+        htmlType="submit"
+      >
+        Delete Plant
       </Button>
     </div>
   );

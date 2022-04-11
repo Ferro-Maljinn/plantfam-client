@@ -5,7 +5,7 @@ import { API_URL } from "../config";
 
 import { Button } from "antd";
 
-function Plantdetails() {
+export default function Plantdetails() {
   const navigate = useNavigate();
 
   const [singlePlant, setSinglePlant] = useState({
@@ -21,7 +21,7 @@ function Plantdetails() {
   });
 
   let params = useParams();
-  console.log(params);
+  // console.log(params);
 
   useEffect(() => {
     async function fetchPlantsList() {
@@ -32,12 +32,12 @@ function Plantdetails() {
         }
       );
       setSinglePlant(singlePlantFromDb.data.singlePlant);
-      console.log(singlePlantFromDb.data.singlePlant);
+      // console.log(singlePlantFromDb.data.singlePlant);
     }
     fetchPlantsList();
   }, [params]);
 
-  const handleUpdatePlant = (event) => {
+  const handleUpdatInput = (event) => {
     console.log(event.target.value);
     setSinglePlant({
       ...singlePlant,
@@ -45,20 +45,26 @@ function Plantdetails() {
     });
   };
 
-  const handleUpdatInput = async (event) => {
-    // console.log(singlePlant, "this is singlePlant")
-    // let response = await axios.post(`${API_URL}/updatePlant`, singlePlant, {
-    //   withCredentials: true,
-    // });
-    // console.log(response, "this is new plant form state")
-    // navigate("/profilepage")
+  const handleUpdatePlant = async (event) => {
+    event.preventDefault();
+    console.log(singlePlant, "this is singlePlant");
+    let response = await axios.put(
+      `${API_URL}/update/plant/${singlePlant._id}`,
+      singlePlant,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(response, "this is new plant form state");
+    navigate("/");
   };
 
   if (!singlePlant._id) {
     return <p>Loading..</p>;
   } else {
-    console.log("charliepizza", singlePlant);
+    // console.log("charliepizza", singlePlant);
   }
+
   return (
     <div>
       <h1>Plant Details</h1>
@@ -118,5 +124,3 @@ function Plantdetails() {
     </div>
   );
 }
-
-export default Plantdetails;
