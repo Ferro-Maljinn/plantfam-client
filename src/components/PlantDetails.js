@@ -37,28 +37,26 @@ function Plantdetails() {
     fetchPlantsList();
   }, [params]);
 
-  const handleUpdatePlant = (event) => {
-    console.log(event.target.value);
+  const handleUpdatInput = (event) => {
+    console.log(event.target.value, "event target value");
     setSinglePlant({
       ...singlePlant,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleUpdatInput = async (event) => {
-    // console.log(singlePlant, "this is singlePlant")
-    // let response = await axios.post(`${API_URL}/updatePlant`, singlePlant, {
-    //   withCredentials: true,
-    // });
-    // console.log(response, "this is new plant form state")
-    // navigate("/profilepage")
+  const handleUpdatePlant = async (event) => {
+    console.log(singlePlant, "this is singlePlant")
+    let response = await axios.post(`${API_URL}/updatePlant`, singlePlant, {
+      withCredentials: true,
+    });
+    console.log(response, "this is new plant form state")
+    navigate("/profilepage")
   };
 
   if (!singlePlant._id) {
     return <p>Loading..</p>;
-  } else {
-    console.log("charliepizza", singlePlant);
-  }
+  } 
   return (
     <div>
       <h1>Plant Details</h1>

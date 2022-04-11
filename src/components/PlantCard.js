@@ -5,31 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 export default function PlantCard({ plant }) {
 
-  // const handleUpdate = async (e) => {
-  //    e.preventDefault();
-    
-  //       try{
-          
-  //         let formData = new FormData();
-  //         formData.append();
-
-  //           const response = await axios.put(`${API_URL}/updatePlant`);
-  //           console.log(response)
-  //           // setAllPlants((oldPlants) => {
-  //           //   console.log(oldPlants)
-  //           //   return oldPlants.map((plant) => {
-  //           //     if (idPlantUpdate === plant._id) {
-  //           //       return updatedPlant;
-  //           //     }
-  //           //     return plant;
-  //           //   });
-  //           // });
-  //       }
-  //       catch(err){
-  //         console.log(err, "error from update single plant")
-  //       }
-  //     }
-
 
   return (
     <div className="plant-card">
