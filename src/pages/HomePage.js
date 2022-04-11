@@ -10,7 +10,7 @@ import PlantCard from "../components/PlantCard"
 // import { useNavigate } from "react-router";
 
 export default function HomePage({ allPlants }) {
-
+console.log(allPlants, "Here are all plants")
   return (
     <div className="plants-container">
       {allPlants.map((plant, i) => {

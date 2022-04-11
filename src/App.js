@@ -38,7 +38,7 @@ export default function App() {
     return <p>No plants currently listed</p>;
   }
 
-  const updateSinglePlant = async (idPlantUpdate, updatedPlant) => {
+/*   const updateSinglePlant = async (idPlantUpdate, updatedPlant) => {
     try{
       	const response = await axios.post(`${API_URL}/plantform`);
         setAllPlants((oldPlants) => {
@@ -53,7 +53,7 @@ export default function App() {
     catch(err){
       console.log(err, "error from update single plant")
     }
-  }
+  } */
 
 
   const handleAddPlant = async (event) => {
