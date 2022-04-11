@@ -15,24 +15,37 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const navigate = useNavigate();
-
   const [allPlants, setAllPlants] = useState([]);
 
-  // FETCH EXISTING PLANTS FROM DATABASE, BUGFIXING TO BE DONE
+  useEffect(() => {
+    async function fetchPlantsList() {
+      let res = await axios.get(`${API_URL}/`);
+      console.log("logging res data", res.data);
+      setAllPlants(res.data);
+    }
+    fetchPlantsList();
+  }, []);
+  if (allPlants === null) {
+    return <p>No plants currently listed></p>;
+  }
 
-  // useEffect(() => {
-  //   async function fetchAllPlants() {
-  //     const response = await fetch(`${API_URL}/example`);
-  //     const data = await response.json();
-  //     if(!data) return;
-  //     setAllPlants(data);
-  //   }
-  //   fetchAllPlants();
-  // }, [])
+  const updateSinglePlant = async (idPlantUpdate, updatedPlant) => {
+    try{
+      	const response = await axios.post(`${API_URL}/plantform`);
+        setAllPlants((oldPlants) => {
+          return oldPlants.map((plant) => {
+            if (idPlantUpdate === plant._id) {
+              return updatedPlant;
+            }
+            return plant;
+          });
+        });
+    }
+    catch(err){
+      console.log(err, "error from update single plant")
+    }
+  }
 
-  // const addNewPlant = (NewPlant) => {
-  //   setAllPlants([...allPlants, NewPlant])
-  // };
 
   const handleAddPlant = async (event) => {
     try {
@@ -59,18 +72,12 @@ function App() {
       <Routes>
         {/* <Layout> */}
 
-        <Route path="/" element={<Home />} />
-        {/* CONNECTED TO FETCHING PLANTS FROM DB 
-
-    {allPlants.map((plant, i) => {
-      return <plantdetails key={plant.name + i} plant={plant} />
-    })} */}
-
+        <Route path="/" element={<Home allPlants={allPlants} />} />
         <Route
           path="/plantform"
-          element={
-            <Plantform allPlants={allPlants} setAllPlants={setAllPlants} />
-          }
+          // element={
+          //   <Plantform allPlants={allPlants} setAllPlants={setAllPlants} />
+          // }
         />
 
         <Route path="/signup" element={<SignUpForm />} />
