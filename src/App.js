@@ -24,9 +24,54 @@ axios.defaults.withCredentials = true;
 export default function App() {
   const navigate = useNavigate();
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
+  const [allPlants, setAllPlants] = useState([]);
+
+  useEffect(() => {
+    async function fetchPlantsList() {
+      let res = await axios.get(`${API_URL}/`);
+      console.log("logging res data", res.data);
+      setAllPlants(res.data);
+    }
+    fetchPlantsList();
+  }, []);
+  if (allPlants === null) {
+    return <p>No plants currently listed</p>;
+  }
+
+  const updateSinglePlant = async (idPlantUpdate, updatedPlant) => {
+    try{
+      	const response = await axios.post(`${API_URL}/plantform`);
+        setAllPlants((oldPlants) => {
+          return oldPlants.map((plant) => {
+            if (idPlantUpdate === plant._id) {
+              return updatedPlant;
+            }
+            return plant;
+          });
+        });
+    }
+    catch(err){
+      console.log(err, "error from update single plant")
+    }
+  }
+
+
+  const handleAddPlant = async (event) => {
+    try {
+      const response = await axios.get(`${API_URL}/plantform`);
+      console.log(response);
+      navigate("/plantform");
+    } catch (err) {
+      console.error(err, "error from handleAddPlant");
+      console.log(err.response.data, "error from handleAddPlant");
+      if (err.response.status === 401) {
+        navigate("/login");
+      }
+    }
+  };
 
   const handlelogout = async (event) => {
-    await axios.post("http://localhost:5000/api/logout");
+    await axios.post(`${API_URL}/logout`);
     navigate("/");
   };
 
@@ -46,6 +91,7 @@ export default function App() {
           </>
         ) : (
           <>
+          <Route path="/" element={<HomePage allPlants={allPlants} />} />
             <Route
               path="/signup"
               element={<SignUpPage setUserIsLoggedIn={setUserIsLoggedIn} />}
