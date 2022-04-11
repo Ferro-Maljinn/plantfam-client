@@ -3,20 +3,9 @@ import axios from 'axios';
 import {API_URL} from '../config'
 
 
-function Home() {
- const [allPlants, setAllPlants] =  useState(null);
 
-  useEffect(()=> {
-    async function plantsList () {
-      let res = await axios.get(`${API_URL}/listPlants`);
-      console.log(res.data);
-      setAllPlants(res.data); 
-    }
-    plantsList();
-  }, [])
-  if (allPlants === null) {
-    return <p>Loading...</p>
-  }
+function Home({allPlants }) {
+ 
   return (
     <div>
     {
@@ -24,7 +13,10 @@ function Home() {
         return (
           <div key={plant.englishName + i}>
           <img src={plant.image} alt="Some Plant"/>
-          <h2>{plant.englishName}</h2>
+
+          <h2>Name: {plant.englishName}</h2>
+          <p>Description: {plant.description}</p>
+     
           </div>
         )
       })
