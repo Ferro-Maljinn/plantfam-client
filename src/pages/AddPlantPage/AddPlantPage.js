@@ -32,23 +32,7 @@ function AddPlantPage({ allPlants, setAllPlants }) {
     });
   };
 
-  // const handleAddNewPlant = async (event) => {
-  //   event.preventDefault();
-  //   await axios
-  //     .post(`${API_URL}/plantform`, newPlantFormstate, {
-  //       withCredentials: true,
-  //     })
-  //     .then(function (response) {
-  //       console.log("arrived");
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
     const handleAddNewPlant = async (event) => {
-      event.preventDefault();
       console.log(allPlants, "this is allplants")
       let response = await axios.post(`${API_URL}/plantform`, newPlantFormstate, {
         withCredentials: true,
@@ -58,8 +42,10 @@ function AddPlantPage({ allPlants, setAllPlants }) {
       navigate("/profilepage")
   };
 
+  console.log(allPlants, "all the plants from addplant page")
+
   return (
-    <form onSubmit={handleAddNewPlant} className="form-container">
+    <form className="form-container">
       <label>Image</label>
       <input
         name="image"

@@ -18,12 +18,16 @@ import AddPlantPage from "./pages/AddPlantPage/AddPlantPage";
 
 // -------------- COMPONENTS
 import CustomNavbar from "./components/CustomNavbar";
+import Plantdetails from "./components/PlantDetails";
 
 axios.defaults.withCredentials = true;
 
 export default function App() {
   const navigate = useNavigate();
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
+  //the true here is setting our user to default to be logged in , is that 
+  //what we want? now if i log out and refresh i am logged in again..
+  //but if we set it to false it logs me out when i refresh..
   const [allPlants, setAllPlants] = useState([]);
 
   useEffect(() => {
@@ -38,37 +42,8 @@ export default function App() {
     return <p>No plants currently listed</p>;
   }
 
-/*   const updateSinglePlant = async (idPlantUpdate, updatedPlant) => {
-    try{
-      	const response = await axios.post(`${API_URL}/plantform`);
-        setAllPlants((oldPlants) => {
-          return oldPlants.map((plant) => {
-            if (idPlantUpdate === plant._id) {
-              return updatedPlant;
-            }
-            return plant;
-          });
-        });
-    }
-    catch(err){
-      console.log(err, "error from update single plant")
-    }
-  } */
+  console.log(allPlants, "this is all plants from appjs")
 
-
-  const handleAddPlant = async (event) => {
-    try {
-      const response = await axios.get(`${API_URL}/plantform`);
-      console.log(response);
-      navigate("/plantform");
-    } catch (err) {
-      console.error(err, "error from handleAddPlant");
-      console.log(err.response.data, "error from handleAddPlant");
-      if (err.response.status === 401) {
-        navigate("/login");
-      }
-    }
-  };
 
   const handlelogout = async (event) => {
     await axios.post(`${API_URL}/logout`);
@@ -78,20 +53,21 @@ export default function App() {
   return (
     <div>
       <CustomNavbar
+        handlelogout={handlelogout}
         userIsLoggedIn={userIsLoggedIn}
         setUserIsLoggedIn={setUserIsLoggedIn}
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage allPlants={allPlants} />} />
+        <Route path="/:plantId" element={<Plantdetails />} />
 
         {userIsLoggedIn ? (
           <>
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/add-plant" element={<AddPlantPage />} />
+            <Route path="/profilePage" element={<ProfilePage />} />
+            <Route path="/add-plant" element={<AddPlantPage allPlants={allPlants} setAllPlants={setAllPlants} />} />
           </>
         ) : (
           <>
-          <Route path="/" element={<HomePage allPlants={allPlants} />} />
             <Route
               path="/signup"
               element={<SignUpPage setUserIsLoggedIn={setUserIsLoggedIn} />}
