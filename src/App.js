@@ -82,16 +82,16 @@ export default function App() {
         setUserIsLoggedIn={setUserIsLoggedIn}
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage allPlants={allPlants} />} />
 
         {userIsLoggedIn ? (
           <>
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profilePage" element={<ProfilePage />} />
             <Route path="/add-plant" element={<AddPlantPage />} />
           </>
         ) : (
           <>
-          <Route path="/" element={<HomePage allPlants={allPlants} />} />
+            <Route path="/" element={<HomePage allPlants={allPlants} />} />
             <Route
               path="/signup"
               element={<SignUpPage setUserIsLoggedIn={setUserIsLoggedIn} />}

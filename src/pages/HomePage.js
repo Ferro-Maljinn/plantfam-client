@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 
-import axios from "axios";
-import { API_URL } from "../config";
-
 import PlantCard from "../components/PlantCard"
 
 // import PlantDetail from "../components/PlantDetail"
