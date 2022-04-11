@@ -25,10 +25,8 @@ axios.defaults.withCredentials = true;
 export default function App() {
   const navigate = useNavigate();
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
-  //the true here is setting our user to default to be logged in , is that 
-  //what we want? now if i log out and refresh i am logged in again..
-  //but if we set it to false it logs me out when i refresh..
   const [allPlants, setAllPlants] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function fetchPlantsList() {
@@ -42,8 +40,22 @@ export default function App() {
     return <p>No plants currently listed</p>;
   }
 
-  console.log(allPlants, "this is all plants from appjs")
+// maybe searchdplant by name
+  const searchedPlant = allPlants.filter((elem) => {
+    console.log(elem, "elem")
+    console.log(elem.englishName, "elem eng name")
+    return elem.englishName.toLowerCase().includes(search.toLowerCase());
+  });
 
+  // and then searchedplantbylocation
+  // const searchedPlantByLocation = allPlants.filter((elem) => {
+  //   console.log(elem, "elem")
+  //   console.log(elem.location, "elem location")
+  //   return elem.location.toLowerCase().includes(search.toLowerCase());
+  // });
+
+  console.log(searchedPlant, "searched plant")
+  console.log(search, "search")
 
   const handlelogout = async (event) => {
     await axios.post(`${API_URL}/logout`);
@@ -56,9 +68,11 @@ export default function App() {
         handlelogout={handlelogout}
         userIsLoggedIn={userIsLoggedIn}
         setUserIsLoggedIn={setUserIsLoggedIn}
+        search={search}
+        setSearch={setSearch}
       />
       <Routes>
-        <Route path="/" element={<HomePage allPlants={allPlants} />} />
+        <Route path="/" element={<HomePage searchedPlant={searchedPlant} allPlants={allPlants} />} />
         <Route path="/:plantId" element={<Plantdetails />} />
 
         {userIsLoggedIn ? (
