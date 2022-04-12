@@ -19,12 +19,15 @@ import AddPlantPage from "./pages/AddPlantPage/AddPlantPage";
 // -------------- COMPONENTS
 import CustomNavbar from "./components/CustomNavbar";
 import Plantdetails from "./components/PlantDetails";
+import Comment from "./components/CommentFolder/Comment";
+
 
 axios.defaults.withCredentials = true;
 
 export default function App() {
   const navigate = useNavigate();
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
+  
   const [allPlants, setAllPlants] = useState([]);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
@@ -34,7 +37,7 @@ export default function App() {
       let res = await axios.get(`${API_URL}/`);
       console.log("logging res data", res.data);
       setAllPlants(res.data.allPlants);
-      setUser(res.data.currentUser)
+      setUser(res.data.currentUser);
     }
     fetchData();
   }, []);
@@ -78,6 +81,7 @@ export default function App() {
           <>
             <Route path="/profilepage" element={<ProfilePage user={user} allPlants={allPlants} />} />
             <Route path="/add-plant" element={<AddPlantPage allPlants={allPlants} setAllPlants={setAllPlants} />} />
+            <Route path="/comments/:plantId" element={<Comment user={user} />} />
           </>
         ) : (
           <>
