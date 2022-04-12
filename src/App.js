@@ -36,6 +36,7 @@ export default function App() {
     }
     fetchPlantsList();
   }, []);
+
   if (allPlants === null) {
     return <p>No plants currently listed</p>;
   }
