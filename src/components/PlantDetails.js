@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { API_URL } from "../config";
 
 import { Button } from "antd";
+import { Link } from "react-router-dom";
 
 export default function Plantdetails() {
   const navigate = useNavigate();
@@ -26,13 +27,13 @@ export default function Plantdetails() {
   useEffect(() => {
     async function fetchPlantsList() {
       let singlePlantFromDb = await axios.get(
-        `${API_URL}/plantdetails/${params.plantId}`,
+        `${API_URL}/plant/${params.plantId}`,
         {
           withCredentials: true,
         }
       );
-      setSinglePlant(singlePlantFromDb.data.singlePlant);
-      // console.log(singlePlantFromDb.data.singlePlant);
+      setSinglePlant(singlePlantFromDb.data);
+      console.log(singlePlantFromDb.data);
     }
     fetchPlantsList();
   }, [params]);
@@ -46,9 +47,8 @@ export default function Plantdetails() {
 
   const handleUpdatePlant = async (event) => {
     event.preventDefault();
-    console.log(singlePlant, "this is singlePlant");
     let response = await axios.put(
-      `${API_URL}/update/plant/${singlePlant._id}`,
+      `${API_URL}/plant/update/${singlePlant._id}`,
       singlePlant,
       {
         withCredentials: true,
@@ -58,11 +58,6 @@ export default function Plantdetails() {
     navigate("/");
   };
 
-  if (!singlePlant._id) {
-    return <p>Loading..</p>;
-  } else {
-    console.log("charliepizza", singlePlant);
-  } 
   return (
     <div>
       <h1>Plant Details</h1>
@@ -116,9 +111,12 @@ export default function Plantdetails() {
           onChange={handleUpdatInput}
         />
         <Button onClick={handleUpdatePlant} type="primary" htmlType="submit">
-          List Plants
+          Update Plant
         </Button>
       </form>
+      <Link to={`/comments/${singlePlant._id}`}>
+        <button>Comment</button>{" "}
+      </Link>
     </div>
   );
 }

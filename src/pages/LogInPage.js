@@ -10,7 +10,7 @@ const defaultFormState = {
   password: "",
 };
 
-export default function LogInPage({ setUserIsLoggedIn }) {
+export default function LogInPage({ setUser, setUserIsLoggedIn }) {
   const navigate = useNavigate();
 
   const [logInState, setLoginState] = useState(defaultFormState);
@@ -24,11 +24,13 @@ export default function LogInPage({ setUserIsLoggedIn }) {
     event.preventDefault();
     setError(null);
     try {
-      await axios.post(`${API_URL}/login`, logInState, {
+      const user = await axios.post(`${API_URL}/login`, logInState, {
         withCredentials: true,
       });
       await setLoginState(defaultFormState);
       await setUserIsLoggedIn(true);
+
+      setUser(user);
       navigate("/");
     } catch (err) {
       setError("Username or password wrong, please try again");
