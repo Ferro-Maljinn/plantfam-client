@@ -27,14 +27,16 @@ export default function App() {
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
   const [allPlants, setAllPlants] = useState([]);
   const [search, setSearch] = useState("");
+  const [user, setUser] = useState();
 
   useEffect(() => {
-    async function fetchPlantsList() {
+    async function fetchData() {
       let res = await axios.get(`${API_URL}/`);
       console.log("logging res data", res.data);
-      setAllPlants(res.data);
+      setAllPlants(res.data.allPlants);
+      setUser(res.data.currentUser)
     }
-    fetchPlantsList();
+    fetchData();
   }, []);
 
   if (allPlants === null) {
@@ -43,8 +45,6 @@ export default function App() {
 
 // maybe searchdplant by name
   const searchedPlant = allPlants.filter((elem) => {
-    console.log(elem, "elem")
-    console.log(elem.englishName, "elem eng name")
     return elem.englishName.toLowerCase().includes(search.toLowerCase());
   });
 
@@ -55,8 +55,6 @@ export default function App() {
   //   return elem.location.toLowerCase().includes(search.toLowerCase());
   // });
 
-  console.log(searchedPlant, "searched plant")
-  console.log(search, "search")
 
   const handlelogout = async (event) => {
     await axios.post(`${API_URL}/logout`);
@@ -78,7 +76,7 @@ export default function App() {
 
         {userIsLoggedIn ? (
           <>
-            <Route path="/profilePage" element={<ProfilePage />} />
+            <Route path="/profilepage" element={<ProfilePage user={user} allPlants={allPlants} />} />
             <Route path="/add-plant" element={<AddPlantPage allPlants={allPlants} setAllPlants={setAllPlants} />} />
           </>
         ) : (

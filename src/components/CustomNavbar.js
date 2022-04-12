@@ -31,7 +31,7 @@ export default function CustomNavbar({ userIsLoggedIn, setUserIsLoggedIn, search
       {userIsLoggedIn ? (
         <>
           <Link to="/"> Home </Link>
-          <Link to="/profile"> Profile </Link>
+          <Link to="/profilepage"> Profile </Link>
           <Link to="/add-plant"> Create Plant </Link>
 
            <Input placeholder="Search" value={search} type="text" onChange={handleSearch} />
