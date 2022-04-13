@@ -18,8 +18,9 @@ import AddPlantPage from "./pages/AddPlantPage/AddPlantPage";
 
 // -------------- COMPONENTS
 import CustomNavbar from "./components/CustomNavbar";
-import Plantdetails from "./components/PlantDetails";
+import UpdatePlant from "./components/UpdatePlant";
 import Comment from "./components/CommentFolder/Comment";
+import PlantDetailsPage from "./pages/PlantDetailsPage";
 
 axios.defaults.withCredentials = true;
 
@@ -103,7 +104,7 @@ export default function App() {
             <HomePage searchedPlant={searchedPlant} allPlants={allPlants} setAllPlants={setAllPlants} />
           }
         />
-        <Route path="/plant/:plantId" element={<Plantdetails />} />
+        <Route path="/plant/:plantId" element={<UpdatePlant />} />
 
         {user ? (
           <>
@@ -124,6 +125,12 @@ export default function App() {
               path="/comments/:plantId"
               element={<Comment user={user} />}
             />
+
+            <Route
+              path="/plantdetailspage/:plantId"
+              element={<PlantDetailsPage user={user} />}
+            />
+
           </>
         ) : (
           <>

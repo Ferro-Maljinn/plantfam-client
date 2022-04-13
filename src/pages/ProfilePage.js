@@ -1,8 +1,3 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { API_URL } from "../config";
-
 
 // import AddPlantForm from "../components/AddPlantForm";
 
