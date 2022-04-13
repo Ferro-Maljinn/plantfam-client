@@ -7,6 +7,7 @@ import { Button } from "antd";
 import { Link } from "react-router-dom";
 
 export default function Plantdetails() {
+  console.log('consolelogging plantdetails')
   const navigate = useNavigate();
 
   const [singlePlant, setSinglePlant] = useState({
@@ -25,7 +26,9 @@ export default function Plantdetails() {
   // console.log(params);
 
   useEffect(() => {
-    async function fetchPlantsList() {
+    async function fetchSinglePlantDetails() {
+     try{
+      console.log("hello from plant list", params)
       let singlePlantFromDb = await axios.get(
         `${API_URL}/plant/${params.plantId}`,
         {
@@ -35,10 +38,16 @@ export default function Plantdetails() {
       setSinglePlant(singlePlantFromDb.data);
       console.log(singlePlantFromDb.data);
     }
-    fetchPlantsList();
+  catch(err){
+    console.log(err, "error from fetching plant details")
+    //error state = error
+    //seterror(err)
+  }
+  }
+    fetchSinglePlantDetails();
   }, [params]);
 
-  const handleUpdatInput = (event) => {
+  const handleUpdateInput = (event) => {
     setSinglePlant({
       ...singlePlant,
       [event.target.name]: event.target.value,
@@ -66,49 +75,49 @@ export default function Plantdetails() {
         <input
           name="image"
           value={singlePlant.image}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <label>Description</label>
         <input
           name="description"
           value={singlePlant.description}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <label>English Name</label>
         <input
           name="englishName"
           value={singlePlant.englishName}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <label>Latin Name</label>
         <input
           name="latinName"
           value={singlePlant.latinName}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <label>Height</label>
         <input
           name="height"
           value={singlePlant.height}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <label>Light intake</label>
         <input
           name="light"
           value={singlePlant.light}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <label>Watering</label>
         <input
           name="watering"
           value={singlePlant.watering}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <label>SoilType</label>
         <input
           name="soilType"
           value={singlePlant.soilType}
-          onChange={handleUpdatInput}
+          onChange={handleUpdateInput}
         />
         <Button onClick={handleUpdatePlant} type="primary" htmlType="submit">
           Update Plant

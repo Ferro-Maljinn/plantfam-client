@@ -8,9 +8,12 @@ const defaultFormState = {
   name: "",
   email: "",
   password: "",
+  // country: "",
+  // city: "",
+  // zipCode: "",
 };
 
-export default function SignUpForm({setUserIsLoggedIn}) {
+export default function SignUpForm( { setUser }) {
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState(defaultFormState);
@@ -22,14 +25,20 @@ export default function SignUpForm({setUserIsLoggedIn}) {
   };
 
   const handleSubmit = async (event) => {
+   try{
     console.log("Hello there submit-handler");
     event.preventDefault();
     console.log(formState)
     let response = await axios.post(`${API_URL}/signup`, formState, {withCredentials: true});
     console.log(response.data)
-    await setFormState(defaultFormState);
-    setUserIsLoggedIn(true)
+    setFormState(defaultFormState);
+    setUser(response.data)
     navigate("/")
+   }
+   catch(err){
+     console.log(err, "error from signup")
+     //display an error to the user here
+   }
   };
 
 
@@ -51,6 +60,30 @@ export default function SignUpForm({setUserIsLoggedIn}) {
         >
           <Input name="name" value={formState.name} onChange={handleFormInput}/>
         </Form.Item>
+
+        {/* <Form.Item
+          label="Country"
+          type="string"
+          rules={[{ required: true, message: "Please input your country!" }]}
+        >
+         <Input name="country" value={formState.country} onChange={handleFormInput}/>
+        </Form.Item>
+
+        <Form.Item
+          label="City"
+          type="string"
+          rules={[{ required: true, message: "Please input your city!" }]}
+        >
+         <Input name="city" value={formState.location.city} onChange={handleFormInput}/>
+        </Form.Item>
+
+        <Form.Item
+          label="Zip code"
+          type="string"
+          rules={[{ required: true, message: "Please input your country!" }]}
+        >
+         <Input name="zipCode" value={formState.location.zipCode} onChange={handleFormInput}/>
+        </Form.Item> */}
 
         <Form.Item
           label="Email"

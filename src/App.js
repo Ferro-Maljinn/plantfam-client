@@ -25,30 +25,47 @@ axios.defaults.withCredentials = true;
 
 export default function App() {
   const navigate = useNavigate();
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
 
   const [allPlants, setAllPlants] = useState([]);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
 
+
   useEffect(() => {
     async function fetchData() {
       let res = await axios.get(`${API_URL}/plant/all`);
       setAllPlants(res.data);
+      let meFromDb = await axios.get(`${API_URL}/user/me`);
+      console.log(meFromDb.data, "me from db")
+      setUser(meFromDb.data);
     }
     fetchData();
   }, []);
 
-  useEffect(() => {
-    async function fetchData() {
-      if (user) {
-        let meUser = await axios.get(`${API_URL}/user/${user._id}`);
-        console.log("arrived");
-        console.log(meUser);
-      }
-    }
-    fetchData();
-  }, [user]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     let res = await axios.get(`${API_URL}/plant/all`);
+  //     console.log("logging res data", res.data);
+  //     setAllPlants(res.data.allPlants);
+  //     setUser(res.data.currentUser)
+  //   }
+  //   fetchData();
+  // }, []);
+
+  // if (allPlants === null) {
+  //   return <p>No plants currently listed</p>;
+  // }
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     if (user) {
+  //       let meUser = await axios.get(`${API_URL}/user/${user._id}`);
+  //       console.log("arrived");
+  //       console.log(meUser);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [user]);
 
   if (allPlants === null) {
     return <p>No plants currently listed</p>;
@@ -75,21 +92,20 @@ export default function App() {
     <div>
       <CustomNavbar
         handlelogout={handlelogout}
-        userIsLoggedIn={userIsLoggedIn}
-        setUserIsLoggedIn={setUserIsLoggedIn}
         search={search}
         setSearch={setSearch}
+        user={user}
       />
       <Routes>
         <Route
           path="/"
           element={
-            <HomePage searchedPlant={searchedPlant} allPlants={allPlants} />
+            <HomePage searchedPlant={searchedPlant} allPlants={allPlants} setAllPlants={setAllPlants} />
           }
         />
-        <Route path="/:plantId" element={<Plantdetails />} />
+        <Route path="/plant/:plantId" element={<Plantdetails />} />
 
-        {userIsLoggedIn ? (
+        {user ? (
           <>
             <Route
               path="/profilepage"
@@ -113,14 +129,13 @@ export default function App() {
           <>
             <Route
               path="/signup"
-              element={<SignUpPage setUserIsLoggedIn={setUserIsLoggedIn} />}
+              element={<SignUpPage setUser={setUser} />}
             />
             <Route
               path="/login"
               element={
                 <LogInPage
                   setUser={setUser}
-                  setUserIsLoggedIn={setUserIsLoggedIn}
                 />
               }
             />

@@ -6,19 +6,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../config";
 
-export default function PlantCard({ plant }) {
+export default function PlantCard({ plant, setAllPlants }) {
   async function handleDeletePlant(plantId) {
     try {
       console.log("arrived to delete");
-      await axios.delete(`${API_URL}/plant/delete/${plantId}`, {
+     let deletedPlant = await axios.delete(`${API_URL}/plant/delete/${plantId}`, {
         params: { plantId: plantId },
       });
-      // TODO Update allPlant/rerender
-      // setSinglePlant({
-      //   ...singlePlant,
-      // });
+      console.log(deletedPlant.data, "the deleted plant")
+      setAllPlants(deletedPlant.data);
     } catch (err) {
-      console.log(err.response.data.errorMessage);
+      console.log("error from delet plants", err);
     }
   }
 

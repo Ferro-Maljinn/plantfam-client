@@ -10,7 +10,7 @@ const defaultFormState = {
   password: "",
 };
 
-export default function LogInPage({ setUser, setUserIsLoggedIn }) {
+export default function LogInPage({ setUser }) {
   const navigate = useNavigate();
 
   const [logInState, setLoginState] = useState(defaultFormState);
@@ -27,9 +27,8 @@ export default function LogInPage({ setUser, setUserIsLoggedIn }) {
       const user = await axios.post(`${API_URL}/login`, logInState, {
         withCredentials: true,
       });
-      await setLoginState(defaultFormState);
-      await setUserIsLoggedIn(true);
-
+      setLoginState(defaultFormState);
+      
       setUser(user);
       navigate("/");
     } catch (err) {
