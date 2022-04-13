@@ -41,8 +41,9 @@ function AddPlantPage({ allPlants, setAllPlants }) {
         withCredentials: true,
       }
     );
-    await setAllPlants([...allPlants, newPlantFormstate]);
-    // navigate("/")
+    console.log(response, "response from addplant")
+    setAllPlants([...allPlants, newPlantFormstate]);
+    navigate("/profilepage")
   };
 
   return (

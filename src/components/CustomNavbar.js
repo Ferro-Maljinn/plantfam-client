@@ -11,12 +11,11 @@ import { API_URL } from "../config";
 
 axios.defaults.withCredentials = true;
 
-export default function CustomNavbar({ userIsLoggedIn, setUserIsLoggedIn, search, setSearch }) {
+export default function CustomNavbar({ search, setSearch, user }) {
   const navigate = useNavigate();
 
   const handleLogOut = async (event) => {
     await axios.post(`${API_URL}/logout`);
-    setUserIsLoggedIn(false);
     navigate("/");
   };
 
@@ -28,7 +27,7 @@ export default function CustomNavbar({ userIsLoggedIn, setUserIsLoggedIn, search
 
   return (
     <div>
-      {userIsLoggedIn ? (
+      {user ? (
         <>
           <Link to="/"> Home </Link>
           <Link to="/profilepage"> Profile </Link>
