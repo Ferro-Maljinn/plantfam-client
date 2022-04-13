@@ -20,6 +20,7 @@ import AddPlantPage from "./pages/AddPlantPage/AddPlantPage";
 import CustomNavbar from "./components/CustomNavbar";
 import UpdatePlant from "./components/UpdatePlant";
 import Comment from "./components/CommentFolder/Comment";
+import PlantDetailsPage from "./pages/PlantDetailsPage";
 
 axios.defaults.withCredentials = true;
 
@@ -124,6 +125,12 @@ export default function App() {
               path="/comments/:plantId"
               element={<Comment user={user} />}
             />
+
+            <Route
+              path="/plantdetailspage/:plantId"
+              element={<PlantDetailsPage user={user} />}
+            />
+
           </>
         ) : (
           <>

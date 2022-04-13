@@ -23,7 +23,7 @@ export default function UpdatePlant() {
   });
 
   let params = useParams();
-  // console.log(params);
+  console.log(params);
 
   useEffect(() => {
     async function fetchSinglePlantDetails() {
@@ -123,9 +123,8 @@ export default function UpdatePlant() {
           Edit Plant
         </Button>
       </form>
-      <Link to={`/comments/${singlePlant._id}`}>
-        <button>Comment</button>{" "}
-      </Link>
+
+      
     </div>
   );
 }
