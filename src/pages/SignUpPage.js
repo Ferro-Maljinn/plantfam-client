@@ -8,6 +8,9 @@ const defaultFormState = {
   name: "",
   email: "",
   password: "",
+  country: "",
+  city: "",
+  zipCode: "",
 };
 
 export default function SignUpForm({setUserIsLoggedIn}) {
@@ -50,6 +53,30 @@ export default function SignUpForm({setUserIsLoggedIn}) {
           rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input name="name" value={formState.name} onChange={handleFormInput}/>
+        </Form.Item>
+
+        <Form.Item
+          label="Country"
+          type="string"
+          rules={[{ required: true, message: "Please input your country!" }]}
+        >
+         <Input name="email" value={formState.country} onChange={handleFormInput}/>
+        </Form.Item>
+
+        <Form.Item
+          label="City"
+          type="string"
+          rules={[{ required: true, message: "Please input your city!" }]}
+        >
+         <Input name="email" value={formState.city} onChange={handleFormInput}/>
+        </Form.Item>
+
+        <Form.Item
+          label="Zip code"
+          type="string"
+          rules={[{ required: true, message: "Please input your country!" }]}
+        >
+         <Input name="email" value={formState.zipCode} onChange={handleFormInput}/>
         </Form.Item>
 
         <Form.Item

@@ -29,19 +29,40 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
 
+
   useEffect(() => {
     async function fetchData() {
-      let res = await axios.get(`${API_URL}/`);
-      console.log("logging res data", res.data);
-      setAllPlants(res.data.allPlants);
-      setUser(res.data.currentUser)
+      let res = await axios.get(`${API_URL}/plant/all`);
+      setAllPlants(res.data);
     }
     fetchData();
   }, []);
 
-  if (allPlants === null) {
-    return <p>No plants currently listed</p>;
-  }
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     let res = await axios.get(`${API_URL}/plant/all`);
+  //     console.log("logging res data", res.data);
+  //     setAllPlants(res.data.allPlants);
+  //     setUser(res.data.currentUser)
+  //   }
+  //   fetchData();
+  // }, []);
+
+  // if (allPlants === null) {
+  //   return <p>No plants currently listed</p>;
+  // }
+
+  useEffect(() => {
+    async function fetchData() {
+      if (user) {
+        let meUser = await axios.get(`${API_URL}/user/${user._id}`);
+        console.log("arrived");
+        console.log(meUser);
+      }
+    }
+    fetchData();
+  }, [user]);
 
 // maybe searchdplant by name
   const searchedPlant = allPlants.filter((elem) => {
