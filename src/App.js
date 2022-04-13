@@ -19,12 +19,14 @@ import AddPlantPage from "./pages/AddPlantPage/AddPlantPage";
 // -------------- COMPONENTS
 import CustomNavbar from "./components/CustomNavbar";
 import Plantdetails from "./components/PlantDetails";
+import Comment from "./components/CommentFolder/Comment";
 
 axios.defaults.withCredentials = true;
 
 export default function App() {
   const navigate = useNavigate();
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(true);
+
   const [allPlants, setAllPlants] = useState([]);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
@@ -37,7 +39,6 @@ export default function App() {
     }
     fetchData();
   }, []);
-
 
   // useEffect(() => {
   //   async function fetchData() {
@@ -64,7 +65,11 @@ export default function App() {
     fetchData();
   }, [user]);
 
-// maybe searchdplant by name
+  if (allPlants === null) {
+    return <p>No plants currently listed</p>;
+  }
+
+  // maybe searchdplant by name
   const searchedPlant = allPlants.filter((elem) => {
     return elem.englishName.toLowerCase().includes(search.toLowerCase());
   });
@@ -75,7 +80,6 @@ export default function App() {
   //   console.log(elem.location, "elem location")
   //   return elem.location.toLowerCase().includes(search.toLowerCase());
   // });
-
 
   const handlelogout = async (event) => {
     await axios.post(`${API_URL}/logout`);
@@ -92,13 +96,33 @@ export default function App() {
         setSearch={setSearch}
       />
       <Routes>
-        <Route path="/" element={<HomePage searchedPlant={searchedPlant} allPlants={allPlants} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage searchedPlant={searchedPlant} allPlants={allPlants} />
+          }
+        />
         <Route path="/:plantId" element={<Plantdetails />} />
 
         {userIsLoggedIn ? (
           <>
-            <Route path="/profilepage" element={<ProfilePage user={user} allPlants={allPlants} />} />
-            <Route path="/add-plant" element={<AddPlantPage allPlants={allPlants} setAllPlants={setAllPlants} />} />
+            <Route
+              path="/profilepage"
+              element={<ProfilePage user={user} allPlants={allPlants} />}
+            />
+            <Route
+              path="/add-plant"
+              element={
+                <AddPlantPage
+                  allPlants={allPlants}
+                  setAllPlants={setAllPlants}
+                />
+              }
+            />
+            <Route
+              path="/comments/:plantId"
+              element={<Comment user={user} />}
+            />
           </>
         ) : (
           <>
@@ -108,7 +132,12 @@ export default function App() {
             />
             <Route
               path="/login"
-              element={<LogInPage setUserIsLoggedIn={setUserIsLoggedIn} />}
+              element={
+                <LogInPage
+                  setUser={setUser}
+                  setUserIsLoggedIn={setUserIsLoggedIn}
+                />
+              }
             />
           </>
         )}

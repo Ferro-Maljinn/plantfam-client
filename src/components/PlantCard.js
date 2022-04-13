@@ -7,11 +7,10 @@ import { Link } from "react-router-dom";
 import { API_URL } from "../config";
 
 export default function PlantCard({ plant }) {
-
   async function handleDeletePlant(plantId) {
     try {
       console.log("arrived to delete");
-      await axios.delete(`${API_URL}/deleteplant/${plantId}`, {
+      await axios.delete(`${API_URL}/plant/delete/${plantId}`, {
         params: { plantId: plantId },
       });
       // TODO Update allPlant/rerender
@@ -32,13 +31,13 @@ export default function PlantCard({ plant }) {
       </div>
       <Link to={plant._id}>
         {" "}
-        <Button type="danger" htmlType="submit">
+        <Button type="primary" htmlType="submit">
           Update
         </Button>{" "}
       </Link>
       <Button
         onClick={() => handleDeletePlant(plant._id)}
-        type="primary"
+        type="danger"
         htmlType="submit"
       >
         Delete Plant

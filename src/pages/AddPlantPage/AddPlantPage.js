@@ -32,18 +32,18 @@ function AddPlantPage({ allPlants, setAllPlants }) {
     });
   };
 
-    const handleAddNewPlant = async (event) => {
-      event.preventDefault();
-      console.log(allPlants, "this is allplants")
-      let response = await axios.post(`${API_URL}/plantform`, newPlantFormstate, {
+  const handleAddNewPlant = async (event) => {
+    event.preventDefault();
+    let response = await axios.post(
+      `${API_URL}/plant/create`,
+      newPlantFormstate,
+      {
         withCredentials: true,
-      });
-      console.log(response, "this is new plant form state")
-      await setAllPlants([...allPlants, newPlantFormstate])
-      navigate("/profilepage")
+      }
+    );
+    await setAllPlants([...allPlants, newPlantFormstate]);
+    // navigate("/")
   };
-
-  console.log(allPlants, "all the plants from addplant page")
 
   return (
     <form className="form-container">
@@ -96,7 +96,7 @@ function AddPlantPage({ allPlants, setAllPlants }) {
         onChange={handleNewPlantInput}
       />
       <Button onClick={handleAddNewPlant} type="primary" htmlType="submit">
-        List Plants
+        Create Plant{" "}
       </Button>
     </form>
   );
