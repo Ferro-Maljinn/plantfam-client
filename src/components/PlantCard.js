@@ -40,6 +40,9 @@ export default function PlantCard({ plant, setAllPlants }) {
       >
         Delete Plant
       </Button>
+
+      
+
     </div>
   );
 }

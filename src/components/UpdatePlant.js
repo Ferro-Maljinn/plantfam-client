@@ -6,8 +6,8 @@ import { API_URL } from "../config";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 
-export default function Plantdetails() {
-  console.log('consolelogging plantdetails')
+export default function UpdatePlant() {
+  console.log('consolelogging updateplant')
   const navigate = useNavigate();
 
   const [singlePlant, setSinglePlant] = useState({
@@ -69,7 +69,7 @@ export default function Plantdetails() {
 
   return (
     <div>
-      <h1>Plant Details</h1>
+      <h1>Edit Plant</h1>
       <form className="form-container">
         <label>Image</label>
         <input
@@ -120,7 +120,7 @@ export default function Plantdetails() {
           onChange={handleUpdateInput}
         />
         <Button onClick={handleUpdatePlant} type="primary" htmlType="submit">
-          Update Plant
+          Edit Plant
         </Button>
       </form>
       <Link to={`/comments/${singlePlant._id}`}>
