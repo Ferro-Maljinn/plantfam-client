@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./PlantCard.css";
 
 import { Button } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../config";
+import { useParams } from "react-router";
+
+
+
+
 
 export default function PlantCard({ plant, setAllPlants }) {
+
   async function handleDeletePlant(plantId) {
     try {
       console.log("arrived to delete");
@@ -27,7 +33,7 @@ export default function PlantCard({ plant, setAllPlants }) {
         <h2>{plant.englishName}</h2>
         <p>{plant.description}</p>
       </div>
-      <Link to={plant._id}>
+      <Link to={`/plant/${plant._id}`}>
         {" "}
         <Button type="primary" htmlType="submit">
           Update
@@ -41,7 +47,13 @@ export default function PlantCard({ plant, setAllPlants }) {
         Delete Plant
       </Button>
 
-      
+      <Link to={`/comments/${plant._id}`}>
+        <button>Comment</button>{" "}
+      </Link>
+
+      <Link to={`/plantdetailspage/${plant._id}`}>
+        <button>Details</button>{" "}
+      </Link>
 
     </div>
   );
