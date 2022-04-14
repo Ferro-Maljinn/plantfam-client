@@ -1,0 +1,31 @@
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 2% 5%;
+}
+
+.hello-profile {
+    width: 80vw;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.plantDetails-andImg-container-profile {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15%;
+  }
+
+  .plantDetails-andImg-container-profile h4 {
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 10%;
+  }
+
+  .plantDetails-andImg-container-profile p {
+    text-align: center;
+    padding-top: 10%;
+  }
