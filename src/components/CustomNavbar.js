@@ -1,9 +1,11 @@
 import React from "react";
+import "./CustomNavbar.css";
 
 // -------------- NAVIGATION
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { Input } from 'antd';
+// import { Input } from "antd";
+import { Button } from "react-bootstrap";
 
 // -------------- API
 import axios from "axios";
@@ -20,30 +22,61 @@ export default function CustomNavbar({ search, setSearch, user }) {
   };
 
   const handleSearch = (event) => {
-    setSearch(event.target.value)
-    console.log(event.target.value, "event target value search")
-  }
-
+    setSearch(event.target.value);
+    console.log(event.target.value, "event target value search");
+  };
 
   return (
     <div>
       {user ? (
-        <>
-          <Link to="/"> Home </Link>
-          <Link to="/profilepage"> Profile </Link>
-          <Link to="/add-plant"> Create Plant </Link>
+        <div className={`nav-bar `}>
+          <div className="link-wrapper">
+            <Link className="link" to="/">
+              {" "}
+              Home{" "}
+            </Link>
+            <Link className="link" to="/profilepage">
+              {" "}
+              Profile{" "}
+            </Link>
+            <Link className="link" to="/add-plant">
+              {" "}
+              Create Plant{" "}
+            </Link>
+            <div className="logout-container">
+              <button
+                className="btn-logout"
+                onClick={handleLogOut}
+                type="primary"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
 
-           <Input placeholder="Search" value={search} type="text" onChange={handleSearch} />
-        
-          <button onClick={handleLogOut} type="primary">
-            Logout
-          </button>
-        </>
+          <div className="search-wrapper">
+            <input
+              placeholder="Search"
+              value={search}
+              type="text"
+              onChange={handleSearch}
+            />
+          </div>
+        </div>
       ) : (
-        <>
-          <Link to="/signup"> Signup </Link>
-          <Link to="/login"> Login </Link>
-        </>
+        <div className={`nav-bar `}>
+          <div className="link-wrapper">
+            <Link className={`link logged-out`} to="/signup">
+              {" "}
+              Signup{" "}
+            </Link>
+            <Link className={`link logged-out`} to="/login">
+              {" "}
+              Login{" "}
+            </Link>
+          </div>
+          <hr className="divider"></hr>
+        </div>
       )}
     </div>
   );
