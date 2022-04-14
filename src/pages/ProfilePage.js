@@ -22,17 +22,20 @@ export default function ProfilePage( { user, allPlants } ) {
     return <p>Loading...</p>
   }
   return (
-    <div>
-      <h1>Hello profile {user && user.name}</h1>
-      Profilepage
+    <div >
+  
+      <h1>Hello {user && user.name}</h1>
+      
       {allPlants && allPlants.filter((plant) =>{
         return plant.owner === user._id
       })
       .map((plant, i) => {
-        return <p key={plant.englishName + i}> { plant.englishName } </p>
+        return <div key={plant.englishName + i} >
+        <img className="plant-img" src={plant.image} alt="Some Plant" />
+        <p> { plant.englishName } </p>
+        </div>
       })
-
-      }
-    </div>
+      } 
+      </div>
   );
 }

@@ -1,4 +1,6 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;300;500;900&family=M+PLUS+Rounded+1c:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;300;500;900&family=Philosopher:wght@400;700&display=swap');
 
 body {
   margin: 0;
@@ -10,8 +12,10 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace; */
+    font-family: 'Lexend Deca', sans-serif;
+    /* font-family: 'Philosopher', sans-serif; */
 }
 
 
