@@ -5,7 +5,7 @@ body {
 
 @media (min-width: 375px) {
   .orgasm-border-gradient {
-    /* max-width: 30%; */
+    max-width: 25vw;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

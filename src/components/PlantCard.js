@@ -1,5 +1,4 @@
 import "./PlantCard.css";
-import { Button, Colors } from "react-foundation";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../config";
@@ -26,6 +25,8 @@ export default function PlantCard({ plant, setAllPlants }) {
   }
 
   return (
+
+
     <div className="orgasm-border-gradient">
       <ButtonGroup className="button-group" bsSize="xsmall">
         <Link to={`/plant/${plant._id}`}>
