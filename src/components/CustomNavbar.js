@@ -34,7 +34,7 @@ export default function CustomNavbar({ search, setSearch, user }) {
           <div className="link-wrapper">
             <Link className="link" to="/"> Home </Link>
             <Link className="link" to="/profilepage"> Profile </Link>
-            <Link className="link" to="/add-plant"> Create Plant </Link>
+            <Link className="link" to="/add-plant"> Add Plant </Link>
             <div className="logout-container">
               <button className="btn-logout" onClick={handleLogOut} type="primary">
                 Logout

@@ -4,6 +4,13 @@ body {
 }
 
 @media (min-width: 375px) {
+
+  .orgasm-border-gradient-containter {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  } 
+
   .orgasm-border-gradient {
     /* max-width: 30%; */
     display: flex;

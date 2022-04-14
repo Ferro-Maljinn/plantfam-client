@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./PlantCard.css";
 import { Button, Colors } from "react-foundation";
 import axios from "axios";
@@ -27,6 +26,7 @@ export default function PlantCard({ plant, setAllPlants }) {
   }
 
   return (
+    <div className="orgasm-border-gradient-containter">
     <div className="orgasm-border-gradient">
       <ButtonGroup className="button-group" bsSize="xsmall">
         <Link to={`/plant/${plant._id}`}>
@@ -77,28 +77,7 @@ export default function PlantCard({ plant, setAllPlants }) {
           <p>{plant.description}</p>
         </div>
       </div>
-      <Link to={`/plant/${plant._id}`}>
-        {" "}
-        <Button type="primary" htmlType="submit">
-          Update
-        </Button>{" "}
-      </Link>
-      <Button
-        onClick={() => handleDeletePlant(plant._id)}
-        type="danger"
-        htmlType="submit"
-      >
-        Delete Plant
-      </Button>
-
-      <Link to={`/comments/${plant._id}`}>
-        <button>Comment</button>{" "}
-      </Link>
-
-      <Link to={`/plantdetailspage/${plant._id}`} className="details-from-right">
-        <button >Details</button>{" "}
-      </Link>
-
+    </div>
     </div>
   );
 }
