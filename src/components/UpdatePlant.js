@@ -67,7 +67,14 @@ export default function UpdatePlant() {
   };
 
   return (
-    <div>
+<>
+    <div className="image-text-container">
+    <img src={singlePlant.image} alt="a.plant" />
+    <div className="gray-container">
+    <p> Edit Plant </p>
+    </div>
+    </div>
+    
       <form className="form-container">
         <label>Image</label>
         <input
@@ -122,7 +129,8 @@ export default function UpdatePlant() {
         </Button>
       </form>
 
-      
-    </div>
+      </>
+
+
   );
 }
