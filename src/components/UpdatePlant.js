@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router";
 import { API_URL } from "../config";
 
 import { Button } from "antd";
-import { Link } from "react-router-dom";
 
 export default function UpdatePlant() {
   console.log('consolelogging updateplant')
