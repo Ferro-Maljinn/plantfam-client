@@ -30,13 +30,29 @@ function PlantDetailsPage({ sideBar, setSideBar }) {
             <h1>{plantDetails.englishName}</h1>
             <p>{plantDetails.latinName}</p>
           </div>
+          
 
             <div className={`plant-details-body `}>
-            <p>Description: {plantDetails.description}</p>
-            <p>Height: {plantDetails.height} </p>
-            <p>Light needed: {plantDetails.light}</p>
-            <p>Watering: {plantDetails.watering}</p>
-            <p>Soil type needed: {plantDetails.soilType}</p>
+              <div className="detail-property-container"> 
+                <h4>Description:</h4> 
+                <p>{plantDetails.description}</p>
+            </div>
+            <div className="detail-property-container"> 
+            <h4>Height:</h4> 
+            <p>{plantDetails.height} </p>
+            </div>
+            <div className="detail-property-container"> 
+            <h4>Light needed:</h4>
+            <p> {plantDetails.light}</p>
+            </div>
+            <div className="detail-property-container"> 
+            <h4>Watering:</h4>
+            <p> {plantDetails.watering}</p>
+            </div>
+            <div className="detail-property-container"> 
+            <h4>Soil type needed:</h4>
+            <p> {plantDetails.soilType}</p>
+            </div>
           </div>
           
         </div>
@@ -44,6 +60,7 @@ function PlantDetailsPage({ sideBar, setSideBar }) {
         <p>Loading...</p>
       )}
     </div>
+    
   );
 }
 
