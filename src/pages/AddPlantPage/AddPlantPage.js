@@ -35,7 +35,7 @@ function AddPlantPage({ allPlants, setAllPlants, user }) {
 
   const handleAddNewPlant = async (event) => {
     event.preventDefault();
-    let response = await axios.post(
+    await axios.post(
       `${API_URL}/plant/create`,
       newPlantFormstate,
       {
