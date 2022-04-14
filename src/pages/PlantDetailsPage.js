@@ -4,12 +4,9 @@ import React, { useEffect, useState } from "react";
 import { API_URL } from "../config";
 import { useParams } from "react-router";
 
-
-function PlantDetailsPage( { sideBar, setSideBar }) {
+function PlantDetailsPage({ sideBar, setSideBar }) {
   const [plantDetails, setPlantDetails] = useState();
   const { plantId } = useParams();
-
-
 
   useEffect(() => {
     const fetchPlantDetails = async () => {
@@ -25,15 +22,23 @@ function PlantDetailsPage( { sideBar, setSideBar }) {
   }, [plantId]);
 
   return (
-    <div>
+    <div className="plant-details-container">
       {plantDetails ? (
-        <div className="orgasm-border-gradient-containter">
-        <div className="orgasm-border-gradient">
-        <img className="plant-img" src={plantDetails.image} alt="Some Plant" />
-        <h1>{plantDetails.englishName}</h1>
-          <p>{plantDetails.latinName}</p>
-          <p>{plantDetails.description}</p>
-        </div>
+        <div className="image-text-container">
+          <img src={plantDetails.image} alt="Some Plant" />
+          <div className={ ` details-page-gray-container`}>
+            <h1>{plantDetails.englishName}</h1>
+            <p>{plantDetails.latinName}</p>
+          </div>
+
+            <div className={`plant-details-body `}>
+            <p>Description: {plantDetails.description}</p>
+            <p>Height: {plantDetails.height} </p>
+            <p>Light needed: {plantDetails.light}</p>
+            <p>Watering: {plantDetails.watering}</p>
+            <p>Soil type needed: {plantDetails.soilType}</p>
+          </div>
+          
         </div>
       ) : (
         <p>Loading...</p>
