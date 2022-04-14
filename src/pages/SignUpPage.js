@@ -19,18 +19,13 @@ export default function SignUpForm( { setUser }) {
   const [formState, setFormState] = useState(defaultFormState);
 
   const handleFormInput = (event) => {
-    console.log(event.target.value);
-    console.log(event.target.name);
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event) => {
    try{
-    console.log("Hello there submit-handler");
     event.preventDefault();
-    console.log(formState)
     let response = await axios.post(`${API_URL}/signup`, formState, {withCredentials: true});
-    console.log(response.data)
     setFormState(defaultFormState);
     setUser(response.data)
     navigate("/")

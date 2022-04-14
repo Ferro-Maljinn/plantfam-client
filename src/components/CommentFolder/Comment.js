@@ -6,7 +6,6 @@ import { API_URL } from "../../config";
 
 function Comment({ user }) {
   const params = useParams();
-  console.log(params);
   const userId = user._id;
   const [commentState, setCommentState] = useState("");
 
@@ -19,18 +18,16 @@ function Comment({ user }) {
     };
     try {
       await axios.post(`${API_URL}/comment/create`, newComment, {
-      withCredentials: true,
-    });
-  }
-  catch (error) {
-    console.log(error)
-  }
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (event) => {
     let value = event.target.value;
     setCommentState(value);
-    console.log(commentState);
   };
 
   return (

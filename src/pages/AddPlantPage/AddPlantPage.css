@@ -51,7 +51,9 @@
 
 
 .input-container input {
+  position: relative;
   background-image: none !important;
+  padding: 16px;
 }
 
 .form-container input:focus {
