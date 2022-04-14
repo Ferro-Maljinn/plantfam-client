@@ -6,3 +6,37 @@
   align-items: baseline;
   align-content: flex-start;
 }
+
+.header-banner-container {
+  background-color: #5e5636;
+  width: 100vw;
+  height: 30vh;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.header-quote {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  background-color: white;
+  padding: 3rem;
+  min-width: 20%;
+  min-height: 15%;
+  text-align: center;
+  margin: 3rem;
+
+  border-radius: 1rem;
+}
+
+.quote {
+  color: rgb(30, 29, 29);
+  margin: 0;
+}

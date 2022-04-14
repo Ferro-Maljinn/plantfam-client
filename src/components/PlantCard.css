@@ -7,38 +7,6 @@ h6 {
   font-size: 0.5em;
 }
 
-.header-banner-container {
-  background-color: #5e5636;
-  width: 100vw;
-  height: 30vh;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-}
-
-.header-quote {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-
-  background-color: white;
-  padding: 3rem;
-  width: 20%;
-  height: 15%;
-  text-align: center;
-  margin-left: 3rem;
-}
-
-.quote {
-  color: black;
-
-}
-
 .outter-container {
   margin: 0.2rem;
 }
@@ -70,7 +38,7 @@ h6 {
   width: 100%;
   max-height: 10vh;
 
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem 1rem 0rem 1rem;
   margin-bottom: 0;
 }
 
@@ -93,7 +61,7 @@ h6 {
   width: 80%;
   margin: auto;
   padding: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
 }
 
 .plantDetails-andImg-container {

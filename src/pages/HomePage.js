@@ -6,7 +6,9 @@ export default function HomePage({ allPlants, searchedPlant, setAllPlants }) {
   return (
     <>
       <div className="header-banner-container">
-      <div className="header-quote"> What Plants May Come True</div>
+        <div className="header-quote">
+          <h4 className="quote">What Plants May Come True</h4>
+        </div>
       </div>
       <div className="plants-container">
         {searchedPlant.map((plant, i) => {
