@@ -16,19 +16,27 @@ h6 {
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 .header-quote {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
   background-color: white;
-  color: black;
   padding: 3rem;
   width: 20%;
   height: 15%;
   text-align: center;
   margin-left: 3rem;
+}
+
+.quote {
+  color: black;
+
 }
 
 .outter-container {

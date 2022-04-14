@@ -36,7 +36,8 @@
   .btn-logout {
     border: none;
     background-color: rgba(0, 0, 0, 0.2);
-    width: 5.5em;
+    width: 5em;
+
     height: 2em;
     color: #5e5636;
     text-transform: uppercase;

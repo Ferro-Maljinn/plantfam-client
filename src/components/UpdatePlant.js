@@ -68,7 +68,6 @@ export default function UpdatePlant() {
 
   return (
     <div>
-      <h1>Edit Plant</h1>
       <form className="form-container">
         <label>Image</label>
         <input

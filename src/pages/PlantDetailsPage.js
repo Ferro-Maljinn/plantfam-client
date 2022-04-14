@@ -1,11 +1,15 @@
+import "./PlantDetailsPage.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../config";
 import { useParams } from "react-router";
 
-function PlantDetailsPage() {
+
+function PlantDetailsPage( { sideBar, setSideBar }) {
   const [plantDetails, setPlantDetails] = useState();
   const { plantId } = useParams();
+
+
 
   useEffect(() => {
     const fetchPlantDetails = async () => {
@@ -23,9 +27,13 @@ function PlantDetailsPage() {
   return (
     <div>
       {plantDetails ? (
-        <div>
-          <h1>PlantDetailsPage</h1>
-          <p>{plantDetails.englishName}</p>
+        <div className="orgasm-border-gradient-containter">
+        <div className="orgasm-border-gradient">
+        <img className="plant-img" src={plantDetails.image} alt="Some Plant" />
+        <h1>{plantDetails.englishName}</h1>
+          <p>{plantDetails.latinName}</p>
+          <p>{plantDetails.description}</p>
+        </div>
         </div>
       ) : (
         <p>Loading...</p>
