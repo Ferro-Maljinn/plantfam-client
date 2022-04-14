@@ -9,7 +9,6 @@ function Comment({ user }) {
   console.log(params);
   const userId = user._id;
   const [commentState, setCommentState] = useState("");
-  const [commentList, setCommentList] = useState("");
 
   const handleComment = async (event) => {
     event.preventDefault();
@@ -18,11 +17,14 @@ function Comment({ user }) {
       plantId: params.plantId,
       comment: commentState,
     };
-    let response = await axios.post(`${API_URL}/comment/create`, newComment, {
+    try {
+      await axios.post(`${API_URL}/comment/create`, newComment, {
       withCredentials: true,
     });
-    setCommentList(response.data)
-    console.log(response.data);
+  }
+  catch (error) {
+    console.log(error)
+  }
   };
 
   const handleChange = (event) => {

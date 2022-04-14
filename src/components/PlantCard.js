@@ -1,12 +1,10 @@
 import "./PlantCard.css";
-import { Button, Colors } from "react-foundation";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../config";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-
 
 export default function PlantCard({ plant, setAllPlants }) {
   async function handleDeletePlant(plantId) {
@@ -26,58 +24,55 @@ export default function PlantCard({ plant, setAllPlants }) {
   }
 
   return (
-    <div className="orgasm-border-gradient-containter">
-    <div className="orgasm-border-gradient">
-      <ButtonGroup className="button-group" bsSize="xsmall">
-        <Link to={`/plant/${plant._id}`}>
-          <div className="icon-container">
-            <img
-              src="/iconify/32x32/ant-design_edit-outlined.png"
-              alt={plant.englishName}
-            />
-            <h6>Edit</h6>
-          </div>
-        </Link>
+      <div className="outter-container">
+        <div className="orgasm-border-gradient">
+          <ButtonGroup className="button-group">
+            <Link to={`/plant/${plant._id}`} className="icon-container">
+              <img
+                src="/iconify/24x24/ant-design_edit-outlined.png"
+                alt={plant.englishName}
+              />
+              <p className="icon-name">Edit</p>
+            </Link>
 
-        <div className="icon-container">
-          <img
-            onClick={() => handleDeletePlant(plant._id)}
-            src="/iconify/32x32/ant-design_delete-outlined.png"
-            alt={plant.englishName}
-          />
-          <h6>Delete</h6>
-        </div>
+            <div className="icon-container">
+              <img
+                onClick={() => handleDeletePlant(plant._id)}
+                src="/iconify/24x24/ant-design_delete-outlined.png"
+                alt={plant.englishName}
+              />
+              <p className="icon-name">Delete</p>
+            </div>
 
-        <Link to={`/comments/${plant._id}`}>
-          <div className="icon-container">
-            <img
-              src="/iconify/32x32/codicon_comment-discussion.png"
-              alt={plant.englishName}
-            />
-            <h6>Comment</h6>
-          </div>
-        </Link>
+            <Link to={`/comments/${plant._id}`} className="icon-container">
+              <img
+                src="/iconify/24x24/codicon_comment-discussion.png"
+                alt={plant.englishName}
+              />
+              <p className="icon-name">Comment</p>
+            </Link>
 
-        <Link to={`/plantdetailspage/${plant._id}`}>
-          <div className="icon-container">
-            <img
-              src="/iconify/32x32/clarity_details-line.png"
-              alt={plant.englishName}
-            />
-            <h6>Details</h6>
+            <Link
+              to={`/plantdetailspage/${plant._id}`}
+              className="icon-container"
+            >
+              <img
+                src="/iconify/24x24/clarity_details-line.png"
+                alt={plant.englishName}
+              />
+              <p className="icon-name">Details</p>
+            </Link>
+          </ButtonGroup>
+          <hr className="custom-hr" />
+
+          <div className="plantDetails-andImg-container">
+            <img className="plant-img" src={plant.image} alt="Some Plant" />
+            <div className="plant-details">
+              <h3 className="plant-name">{plant.englishName}</h3>
+              <p className="plant-description">{plant.description}</p>
+            </div>
           </div>
-        </Link>
-        <hr />
-      </ButtonGroup>
-      
-      <div className="plantDetails-andImg-container">
-        <img className="plant-img" src={plant.image} alt="Some Plant" />
-        <div className="plant-details">
-          <h3>{plant.englishName}</h3>
-          <p>{plant.description}</p>
         </div>
       </div>
-    </div>
-    </div>
   );
 }
