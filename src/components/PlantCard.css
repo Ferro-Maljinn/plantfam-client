@@ -1,28 +1,92 @@
-.plant-card {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-content: flex-start;
-  border: solid 1px black;
-  margin: 22px;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.plant-img {
-  height: 175px;
-  width: 175px;
-  border-radius: 100%;
-}
+@media (min-width: 375px) {
+  .orgasm-border-gradient {
+    /* max-width: 30%; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: flex-start;
+    /* border: solid 1px black; */
+    margin: 16px;
 
-.plant-details {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: stretch;
-  align-content: stretch;
-  width: 200px;
-  padding: 20px;
+    border: solid 2.5px transparent;
+    border-radius: 30px;
+    background-image: linear-gradient(white, white),
+      radial-gradient(circle at top left, #95dac1, #ffeba1, #fd6f96);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+
+  .icon-container {
+    color: #434343;
+    text-decoration: none;
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button-group {
+    margin-bottom: 0px;
+    padding: 32px 32px 0 32px;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  hr{
+    color: black;
+    border-bottom: 1px solid;
+
+    width: 100%;
+  }
+
+  /* 
+.btn {
+    width: fit-content;
+    padding: 32px;
+    border-radius: 16px;
+} */
+
+  /* .delete-btn {
+  border-radius: 16px;
+  height: fit-content;
+  background-color:#ff0044;
+} */
+  .plantDetails-andImg-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plant-img {
+    height: 140px;
+    width: 140px;
+    object-fit: contain;
+    border: solid 1px;
+    border-radius: 100%;
+    background-image: linear-gradient(white, white),
+      radial-gradient(circle at top left, #95dac1, #ffeba1, #fd6f96);
+  }
+
+  .plant-details {
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: stretch;
+    /*     width: 200px; */
+    padding: 20px;
+  }
+  h3 {
+    text-align: center;
+  }
+  p {
+    font-style: italic;
+  }
 }

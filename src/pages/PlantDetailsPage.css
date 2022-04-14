@@ -1,0 +1,15 @@
+
+@media (max-width: 844px) {
+
+.details-container {
+    position: fixed;
+    height: 100vh;
+    width: 20vw;
+    background-color: aqua;
+    right: -200;
+    text-align: left;
+    transition: 1s;
+    z-index: -10;
+}
+
+}
