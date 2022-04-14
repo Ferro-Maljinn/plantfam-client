@@ -6,7 +6,6 @@ import { API_URL } from "../config";
 import { Button } from "antd";
 
 export default function UpdatePlant() {
-  console.log('consolelogging updateplant')
   const navigate = useNavigate();
 
   const [singlePlant, setSinglePlant] = useState({
@@ -22,27 +21,21 @@ export default function UpdatePlant() {
   });
 
   let params = useParams();
-  console.log(params);
 
   useEffect(() => {
     async function fetchSinglePlantDetails() {
-     try{
-      console.log("hello from plant list", params)
-      let singlePlantFromDb = await axios.get(
-        `${API_URL}/plant/${params.plantId}`,
-        {
-          withCredentials: true,
-        }
-      );
-      setSinglePlant(singlePlantFromDb.data);
-      console.log(singlePlantFromDb.data);
+      try {
+        let singlePlantFromDb = await axios.get(
+          `${API_URL}/plant/${params.plantId}`,
+          {
+            withCredentials: true,
+          }
+        );
+        setSinglePlant(singlePlantFromDb.data);
+      } catch (err) {
+        console.log(err, "error from fetching plant details");
+      }
     }
-  catch(err){
-    console.log(err, "error from fetching plant details")
-    //error state = error
-    //seterror(err)
-  }
-  }
     fetchSinglePlantDetails();
   }, [params]);
 
@@ -121,8 +114,6 @@ export default function UpdatePlant() {
           Edit Plant
         </Button>
       </form>
-
-      
     </div>
   );
 }

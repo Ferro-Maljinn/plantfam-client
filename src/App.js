@@ -31,13 +31,11 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
 
-
   useEffect(() => {
     async function fetchData() {
       let res = await axios.get(`${API_URL}/plant/all`);
       setAllPlants(res.data);
       let meFromDb = await axios.get(`${API_URL}/user/me`);
-      console.log(meFromDb.data, "me from db")
       setUser(meFromDb.data);
     }
     fetchData();
@@ -56,17 +54,6 @@ export default function App() {
   // if (allPlants === null) {
   //   return <p>No plants currently listed</p>;
   // }
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     if (user) {
-  //       let meUser = await axios.get(`${API_URL}/user/${user._id}`);
-  //       console.log("arrived");
-  //       console.log(meUser);
-  //     }
-  //   }
-  //   fetchData();
-  // }, [user]);
 
   if (allPlants === null) {
     return <p>No plants currently listed</p>;
@@ -101,7 +88,12 @@ export default function App() {
         <Route
           path="/"
           element={
-            <HomePage searchedPlant={searchedPlant} allPlants={allPlants} setAllPlants={setAllPlants} />
+            <HomePage
+              searchedPlant={searchedPlant}
+              allPlants={allPlants}
+              setAllPlants={setAllPlants}
+              user={user}
+            />
           }
         />
         <Route path="/plant/:plantId" element={<UpdatePlant />} />
@@ -112,12 +104,14 @@ export default function App() {
               path="/profilepage"
               element={<ProfilePage user={user} allPlants={allPlants} />}
             />
+
             <Route
               path="/add-plant"
               element={
                 <AddPlantPage
                   allPlants={allPlants}
                   setAllPlants={setAllPlants}
+                  user={user}
                 />
               }
             />
@@ -130,22 +124,11 @@ export default function App() {
               path="/plantdetailspage/:plantId"
               element={<PlantDetailsPage user={user} />}
             />
-
           </>
         ) : (
           <>
-            <Route
-              path="/signup"
-              element={<SignUpPage setUser={setUser} />}
-            />
-            <Route
-              path="/login"
-              element={
-                <LogInPage
-                  setUser={setUser}
-                />
-              }
-            />
+            <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+            <Route path="/login" element={<LogInPage setUser={setUser} />} />
           </>
         )}
       </Routes>
