@@ -1,4 +1,5 @@
 
+
 .plant-details-container{
     height: 80vh;
     display: flex;
@@ -42,3 +43,6 @@
     font-size: 15px;
     text-decoration: underline 3px solid #ffe27b;
 }
+
+
+
