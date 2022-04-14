@@ -1,11 +1,15 @@
+import "./PlantDetailsPage.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../config";
 import { useParams } from "react-router";
+import { IoIosClose } from "react-icons/io";
 
-function PlantDetailsPage() {
+function PlantDetailsPage( { sideBar, setSideBar }) {
   const [plantDetails, setPlantDetails] = useState();
   const { plantId } = useParams();
+
+
 
   useEffect(() => {
     const fetchPlantDetails = async () => {
@@ -23,7 +27,8 @@ function PlantDetailsPage() {
   return (
     <div>
       {plantDetails ? (
-        <div>
+        <div className="details-container">
+        <IoIosClose />
           <h1>PlantDetailsPage</h1>
           <p>{plantDetails.englishName}</p>
         </div>

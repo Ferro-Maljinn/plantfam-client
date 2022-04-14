@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./PlantCard.css";
 
 import { Button } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { API_URL } from "../config";
-import { useParams } from "react-router";
-
-
-
 
 
 export default function PlantCard({ plant, setAllPlants }) {
+
 
   async function handleDeletePlant(plantId) {
     try {
@@ -51,8 +48,8 @@ export default function PlantCard({ plant, setAllPlants }) {
         <button>Comment</button>{" "}
       </Link>
 
-      <Link to={`/plantdetailspage/${plant._id}`}>
-        <button>Details</button>{" "}
+      <Link to={`/plantdetailspage/${plant._id}`} className="details-from-right">
+        <button >Details</button>{" "}
       </Link>
 
     </div>
