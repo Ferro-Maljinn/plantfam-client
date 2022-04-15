@@ -147,16 +147,7 @@ textarea:focus {
   text-transform: uppercase;
 }
 
-/*   .gray-container {
-    top: 20%;
-    background-color: #5e5636;
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-    z-index: -10;
-  } */
+
 
 .form-container {
   margin-left: 1%;
@@ -197,6 +188,17 @@ textarea:focus {
   justify-content: space-around;
   z-index: -10;
 }
+
+/*   .gray-container {
+    top: 20%;
+    background-color: #5e5636;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    z-index: -10;
+  } */
 
 /* .input-container {
   padding: 1em;

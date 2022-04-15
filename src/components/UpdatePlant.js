@@ -63,7 +63,7 @@ export default function UpdatePlant() {
 <>
     <div className="image-text-container">
     <img src={singlePlant.image} alt="a.plant" />
-    <div className="gray-container">
+    <div className="green-container">
     <p> Edit Plant </p>
     </div>
     </div>
