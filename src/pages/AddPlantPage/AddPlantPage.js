@@ -129,7 +129,7 @@ function AddPlantPage({ allPlants, setAllPlants, user }) {
             type="primary"
             htmlType="submit"
           >
-            Create Plant
+            Add Plant
           </button>
         </form>
         <img
