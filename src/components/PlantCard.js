@@ -21,6 +21,9 @@ export default function PlantCard({ plant, setAllPlants, user }) {
     }
   }
 
+  console.log(user, "user from plantcard")
+  console.log(plant, "plant from plantcard")
+
   return (
     <div className="outter-container">
       <div className="orgasm-border-gradient">

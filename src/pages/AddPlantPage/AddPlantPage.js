@@ -35,14 +35,16 @@ function AddPlantPage({ allPlants, setAllPlants, user }) {
 
   const handleAddNewPlant = async (event) => {
     event.preventDefault();
-    await axios.post(
+    const response = await axios.post(
       `${API_URL}/plant/create`,
       newPlantFormstate,
       {
         withCredentials: true,
       }
     );
-    setAllPlants([...allPlants, newPlantFormstate]);
+    const newPlantFromDb = response.data
+    console.log(newPlantFromDb, "new plant from db")
+    setAllPlants([...allPlants, newPlantFromDb]);
     navigate("/profilepage");
   };
 

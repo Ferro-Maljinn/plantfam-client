@@ -6,6 +6,9 @@ export default function ProfilePage({ user, allPlants }) {
     return <p>Loading...</p>;
   }
 
+
+  console.log(user.currentUser._id, "current user")
+
   return (
     <div className="profile-container">
       <div className="user-welcome">

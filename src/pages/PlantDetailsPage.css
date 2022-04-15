@@ -55,7 +55,7 @@
   color: black;
   font-size: 15px;
   line-height: 24px;
-  text-decoration: underline 2px solid #5e5636;
+  /* text-decoration: underline 2px solid #5e5636; */
   /* max-width: 100%; */
   width: 40%;
 }
