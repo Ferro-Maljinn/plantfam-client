@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { API_URL } from "../config";
 import { useParams } from "react-router";
 
-function PlantDetailsPage({ sideBar, setSideBar }) {
+function PlantDetailsPage() {
   const [plantDetails, setPlantDetails] = useState();
   const { plantId } = useParams();
 

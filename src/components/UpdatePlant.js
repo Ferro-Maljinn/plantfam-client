@@ -5,7 +5,8 @@ import { API_URL } from "../config";
 
 import { Button } from "antd";
 
-export default function UpdatePlant() {
+export default function UpdatePlant({ setAllPlants }) {
+  console.log("rendering updateplant ")
   const navigate = useNavigate();
 
   const [singlePlant, setSinglePlant] = useState({
@@ -31,6 +32,7 @@ export default function UpdatePlant() {
             withCredentials: true,
           }
         );
+       console.log(singlePlantFromDb, "this is singleplant from db")
         setSinglePlant(singlePlantFromDb.data);
       } catch (err) {
         console.log(err, "error from fetching plant details");
@@ -55,7 +57,8 @@ export default function UpdatePlant() {
         withCredentials: true,
       }
     );
-    console.log(response, "this is new plant form state");
+    setAllPlants(response.data)
+    console.log(response, "plant update response");
     navigate("/");
   };
 

@@ -42,15 +42,18 @@ export default function App() {
     loggedIn && fetchUser();
   }, [loggedIn]);
 
-  useEffect(() => {
-    async function fetchPlants() {
-      try {
-        let res = await axios.get(`${API_URL}/plant/all`);
-        setAllPlants(res.data);
-      } catch (e) {
-        console.log(e.message)
-      }
+  async function fetchPlants() {
+    try {
+      let res = await axios.get(`${API_URL}/plant/all`);
+      setAllPlants(res.data);
+    } catch (e) {
+      console.log(e.message)
     }
+  }
+
+
+  useEffect(() => {
+   
     fetchPlants();
   }, []);
 
@@ -93,7 +96,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/plant/:plantId" element={<UpdatePlant />} />
+        <Route path="/plant/:plantId" element={<UpdatePlant setAllPlants={setAllPlants} />} />
 
         {user ? (
           <>
