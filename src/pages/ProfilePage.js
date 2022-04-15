@@ -9,7 +9,7 @@ export default function ProfilePage({ user, allPlants }) {
   return (
     <div className="profile-container">
       <div className="user-welcome">
-        <h1>Hello {user && user.currentUser.name}</h1>
+        <h1>Hello {user && user.currentUser && user.currentUser.name}</h1>
       </div>
       <div className="plants-container">
         {allPlants &&

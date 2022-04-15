@@ -25,7 +25,7 @@ export default function PlantCard({ plant, setAllPlants, user }) {
     <div className="outter-container">
       <div className="orgasm-border-gradient">
         <ButtonGroup className="button-group">
-          {user && user.currentUser._id === plant.owner && (
+          {user && user.currentUser && user.currentUser._id === plant.owner && (
             <>
               <Link to={`/plant/${plant._id}`} className="icon-container">
                 <img

@@ -13,7 +13,7 @@ const defaultFormState = {
   // zipCode: "",
 };
 
-export default function SignUpForm( { setUser }) {
+export default function SignUpForm({ setUser, setLoggedIn }) {
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState(defaultFormState);
@@ -22,18 +22,22 @@ export default function SignUpForm( { setUser }) {
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async (event) => {
-   try{
+  const handleSignUp = async (event) => {
     event.preventDefault();
-    let response = await axios.post(`${API_URL}/signup`, formState, {withCredentials: true});
-    setFormState(defaultFormState);
-    setUser(response.data)
-    navigate("/")
-   }
-   catch(err){
-     console.log(err, "error from signup")
-     //display an error to the user here
-   }
+    try {
+      let user = await axios.post(`${API_URL}/signup`, formState, {
+        withCredentials: true
+      });
+      setFormState(defaultFormState);
+
+      setUser(user)
+      setLoggedIn(true)
+      navigate("/")
+    }
+    catch (err) {
+      console.log(err.message)
+      //display an error to the user here
+    }
   };
 
 
@@ -85,7 +89,7 @@ export default function SignUpForm( { setUser }) {
           type="email"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
-         <Input name="email" value={formState.email} onChange={handleFormInput}/>
+          <Input name="email" value={formState.email} onChange={handleFormInput}/>
         </Form.Item>
 
         <Form.Item
@@ -105,7 +109,7 @@ export default function SignUpForm( { setUser }) {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button onClick={handleSubmit} type="primary" htmlType="submit">
+          <Button onClick={handleSignUp} type="primary" htmlType="submit">
             Sign Up
           </Button>
         </Form.Item>

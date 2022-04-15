@@ -13,11 +13,13 @@ import { API_URL } from "../config";
 
 axios.defaults.withCredentials = true;
 
-export default function CustomNavbar({ search, setSearch, user }) {
+export default function CustomNavbar({ search, setSearch, user, setUser, setLoggedIn }) {
   const navigate = useNavigate();
 
-  const handleLogOut = async (event) => {
+  const handleLogOut = async () => {
     await axios.post(`${API_URL}/logout`);
+    setLoggedIn(false)
+    setUser(null)
     navigate("/");
   };
 
@@ -53,7 +55,6 @@ export default function CustomNavbar({ search, setSearch, user }) {
               onChange={handleSearch}
             />
 
-      
           </div>
           
         </div>

@@ -10,7 +10,7 @@ const defaultFormState = {
   password: "",
 };
 
-export default function LogInPage({ setUser }) {
+export default function LogInPage({ setLoggedIn }) {
   const navigate = useNavigate();
 
   const [logInState, setLoginState] = useState(defaultFormState);
@@ -28,8 +28,7 @@ export default function LogInPage({ setUser }) {
         withCredentials: true,
       });
       setLoginState(defaultFormState);
-      
-      setUser(user);
+      user && setLoggedIn(true);
       navigate("/");
     } catch (err) {
       setError("Username or password wrong, please try again");

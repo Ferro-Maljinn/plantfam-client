@@ -6,7 +6,6 @@ import { API_URL } from "./config";
 import axios from "axios";
 
 // -------------- NAVIGATION
-import { useNavigate } from "react-router";
 import { Routes, Route } from "react-router-dom";
 
 // -------------- PAGES
@@ -25,35 +24,37 @@ import PlantDetailsPage from "./pages/PlantDetailsPage";
 axios.defaults.withCredentials = true;
 
 export default function App() {
-  const navigate = useNavigate();
 
   const [allPlants, setAllPlants] = useState([]);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
+  const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
-    async function fetchData() {
-      let res = await axios.get(`${API_URL}/plant/all`);
-      setAllPlants(res.data);
-      let meFromDb = await axios.get(`${API_URL}/user/me`);
-      setUser(meFromDb.data);
+    async function fetchUser() {
+      try {
+        let meFromDb = await axios.get(`${API_URL}/user/me`);
+        setUser(meFromDb.data);
+      } catch (e) {
+        console.log(e.message)
+      }
     }
-    fetchData();
+    loggedIn && fetchUser();
+  }, [loggedIn]);
+
+  useEffect(() => {
+    async function fetchPlants() {
+      try {
+        let res = await axios.get(`${API_URL}/plant/all`);
+        setAllPlants(res.data);
+      } catch (e) {
+        console.log(e.message)
+      }
+    }
+    fetchPlants();
   }, []);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     let res = await axios.get(`${API_URL}/plant/all`);
-  //     console.log("logging res data", res.data);
-  //     setAllPlants(res.data.allPlants);
-  //     setUser(res.data.currentUser)
-  //   }
-  //   fetchData();
-  // }, []);
 
-  // if (allPlants === null) {
-  //   return <p>No plants currently listed</p>;
-  // }
 
   if (allPlants === null) {
     return <p>No plants currently listed</p>;
@@ -71,18 +72,14 @@ export default function App() {
   //   return elem.location.toLowerCase().includes(search.toLowerCase());
   // });
 
-  const handlelogout = async (event) => {
-    await axios.post(`${API_URL}/logout`);
-    navigate("/");
-  };
-
   return (
     <div>
       <CustomNavbar
-        handlelogout={handlelogout}
         search={search}
         setSearch={setSearch}
         user={user}
+        setUser={setUser}
+        setLoggedIn={setLoggedIn}
       />
       <Routes>
         <Route
@@ -101,6 +98,7 @@ export default function App() {
         {user ? (
           <>
             <Route
+              index
               path="/profilepage"
               element={<ProfilePage user={user} allPlants={allPlants} />}
             />
@@ -127,8 +125,8 @@ export default function App() {
           </>
         ) : (
           <>
-            <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
-            <Route path="/login" element={<LogInPage setUser={setUser} />} />
+            <Route path="/signup" element={<SignUpPage setUser={setUser} setLoggedIn={setLoggedIn} />} />
+            <Route path="/login" element={<LogInPage setUser={setUser} setLoggedIn={setLoggedIn} />} />
           </>
         )}
       </Routes>

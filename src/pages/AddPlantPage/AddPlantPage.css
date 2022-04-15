@@ -1,5 +1,4 @@
 @media (min-width: 375px) {
-
   .image-text-container {
     display: flex;
     flex-direction: column;
@@ -8,22 +7,22 @@
     height: 30vh;
     text-align: center;
   }
-  
+
   .image-text-container img {
     height: 20vh;
     border: 4px solid #ffe27b;
     position: absolute;
     top: 15%;
   }
-  
+
   .image-text-container p {
     margin: 1em 3em 1em 3em;
     font-size: 0.8em;
     font-style: normal;
     text-transform: uppercase;
   }
-  
-  .gray-container {
+
+  .green-container {
     background-color: #5e5636;
     width: 100vw;
     height: 80%;
@@ -33,81 +32,114 @@
     align-items: center;
   }
 
-.form-container {
+  .form-and-image-container-row {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  /* background-image: linear-gradient(to bottom, white, rgb(228, 228, 228), #014519df); */
-  height: 100vh;
-}
+  flex-direction: row;
+  justify-content:;
+  }
 
-.form-container input {
-  margin-bottom: 15px;
-  background-image: none !important;
-  border: 1px solid #5e5636;  
-}
-
-
-.input-container input {
-  position: relative;
-  background-image: none !important;
-  padding: 16px;
-}
-
-.form-container input:focus {
-  outline: none;  
-  background-image: none;
-  background-image: none !important;
-} textarea:focus {
-  background-image: none !important;
-  outline: none;  
-  background-color: red;
-} select:focus{
-  outline: none;  
-  background-color: red;
-}
-
-.add-plant-btn {
-  border: 2px solid #5e5636;
-  padding: 1em;
-  margin: 1em 0 4em 0;
-  transition: 1s;
-}
-
-.add-plant-btn:hover {
-  background-color: #5e5636;
-  color: wheat;
-}
-
-}
-
-@media (min-width: 768px) {
-  .image-text-container {
-    margin-top: 5%;
+  .body-plant-image{
+    width: 100%;
+    height: 100%;
+  }
+  .form-container {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    height: 30vh;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        153.09deg,
+        rgba(255, 181, 181, 0.5) 25.49%,
+        rgba(255, 255, 255, 0.05) 87.46%
+      ),
+      linear-gradient(0deg, #f7f3c2, #f7f3c2);
+    min-width: 50vw;
+    min-height: 10vh;
+    margin: 1.6666666666666667vw;
+    padding: 1.6666666666666667vw;
+    border-radius: 6px;
   }
-  
-  .image-text-container img {
-    height: 30vh;
-    border: 4px solid #ffe27b;
-    position: absolute;
-    margin-left: 20%;
-    top: 20%;
+
+
+  .form-container input {
+    background-image: none !important;
+    border: none;
+    border-radius: 6px;
   }
-  
-  .image-text-container p {
-    margin-left: 5em;
-    font-size: 0.8em;
-    font-style: normal;
-    text-transform: uppercase;
+
+  .input-container input {
+    width: 25vw;
+    position: relative;
+    background-image: none !important;
+    padding: 16px;
   }
-  
-  .gray-container {
+
+  .form-container input:focus {
+    outline: none;
+    background-image: none;
+    border: 1px solid #5e5636;
+    background-image: none !important;
+    background-color: rgb(231, 231, 252);
+    font-weight: 1.5rem;
+  }
+
+  .form-container label {
+    font-weight: bold;
+    margin: 16px 0;
+    color: rgb(64, 64, 64);
+  }
+
+  /*   Is this code neccessary? :)
+textarea:focus {
+    background-image: none !important;
+    outline: none;
+    background-color: red;
+  }
+  select:focus {
+    outline: none;
+    background-color: red;
+  } */
+
+  .add-plant-btn {
+    border: 2px solid #5e5636;
+    border-radius: 6px;
+    padding: 1rem 2rem;
+    margin: 4rem 0;
+    transition: 1s;
+  }
+
+  .add-plant-btn:hover {
+    background-color: #5e5636;
+    color: rgb(255, 255, 255);
+  }
+}
+
+/* @media (min-width: 768px) { */
+.image-text-container {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 30vh;
+}
+
+.image-text-container img {
+  height: 30vh;
+  border: 4px solid #ffe27b;
+  position: absolute;
+  margin-left: 20%;
+  top: 20%;
+}
+
+.image-text-container p {
+  margin-left: 5em;
+  font-size: 0.8em;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/*   .gray-container {
     top: 20%;
     background-color: #5e5636;
     width: 100vw;
@@ -116,14 +148,14 @@
     flex-direction: row;
     justify-content:space-around;
     z-index: -10;
-  }
+  } */
 
-  .form-container {
+.form-container {
   margin-top: 5%;
-  }
 }
+/* } */
 
-@media (min-width: 950px) {
+/* @media (min-width: 950px) { */
 .image-text-container {
   margin-top: 5%;
   display: flex;
@@ -147,30 +179,19 @@
   color: white;
 }
 
-.gray-container {
+.green-container {
   top: 20%;
   background-color: #5e5636;
   width: 100vw;
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
+  justify-content: space-around;
   z-index: -10;
 }
 
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  /* background-image: linear-gradient(to bottom, white, rgb(228, 228, 228), rgb(218, 210, 210), #014519df); */
-  height: 80vh;
-
-}
-.input-container  {
+/* .input-container {
   padding: 1em;
-}
+} */
 
-}
+/* } */
