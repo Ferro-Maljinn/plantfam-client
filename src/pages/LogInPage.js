@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import "./LoginPage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -37,80 +37,56 @@ export default function LogInPage({ setLoggedIn }) {
 
   return (
     <div>
-      <h2>Log In</h2>
-      <Form
-        name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        initialValues={{
-          remember: true,
-        }}
-        autoComplete="on"
-      >
-        <Form.Item
-          label="Username"
-          type="name"
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-            },
-          ]}
-        >
-          <Input
-            name="name"
-            value={logInState.name}
-            onChange={handleLoginInput}
-          />
-        </Form.Item>
+      <div className="title">
+        <h2>Log In</h2>
+      </div>
 
-        <Form.Item
-          label="Password"
-          type="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password
-            name="password"
-            value={logInState.password}
-            onChange={handleLoginInput}
-          />
-        </Form.Item>
+      <div className="form-and-image-container-row">
+        <form className="form-container">
+          <div className="input-container">
+            <label>Username:</label>
+            <input
+              name="name"
+              type="text"
+              value={logInState.name}
+              onChange={handleLoginInput}
+            />
+          </div>
 
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
+          <div className="input-container">
+            <label>Password:</label>
+            <input
+              name="password"
+              type="password"
+              value={logInState.password}
+              onChange={handleLoginInput}
+            />
+          </div>
 
-        <Form.Item
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          {/* if try catch from handleLogin throws an error, 
-          then the p tag will be displayed with an error message */}
-          {error && <h1>{error}</h1>}
+          <div className="input-container-row">
+            <label for="remember">Remeber me</label>
 
-          <Button onClick={handleLogin} type="primary" htmlType="submit">
-            Log In
-          </Button>
-        </Form.Item>
-      </Form>
+            <input
+              className="remember"
+              type="checkbox"
+              id="remember"
+              name="remember"
+              checked
+            />
+          </div>
+
+          {error && <h5 className="error">{error}</h5>}
+
+          <button
+            className="add-plant-btn"
+            onClick={handleLogin}
+            type="primary"
+            htmlType="submit"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

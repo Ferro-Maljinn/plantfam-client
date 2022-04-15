@@ -26,41 +26,38 @@ function PlantDetailsPage({ sideBar, setSideBar }) {
       {plantDetails ? (
         <div className="image-text-container">
           <img src={plantDetails.image} alt="Some Plant" />
-          <div className={ ` details-page-gray-container`}>
+          <div className={` details-page-gray-container`}>
             <h1>{plantDetails.englishName}</h1>
             <p>{plantDetails.latinName}</p>
           </div>
-          
 
-            <div className={`plant-details-body `}>
-              <div className="detail-property-container"> 
-                <h4>Description:</h4> 
-                <p>{plantDetails.description}</p>
+          <div className="plant-details-body">
+            <div className="detail-property-container">
+              <h4 className="box-title">Description:</h4>
+              <p className="align-left">{plantDetails.description}</p>
             </div>
-            <div className="detail-property-container"> 
-            <h4>Height:</h4> 
-            <p>{plantDetails.height} </p>
+            <div className="detail-property-container">
+              <h4 className="box-title">Height:</h4>
+              <p className="align-left">{plantDetails.height} </p>
             </div>
-            <div className="detail-property-container"> 
-            <h4>Light needed:</h4>
-            <p> {plantDetails.light}</p>
+            <div className="detail-property-container">
+              <h4 className="box-ttitle">Light needed:</h4>
+              <p className="align-left"> {plantDetails.light}</p>
             </div>
-            <div className="detail-property-container"> 
-            <h4>Watering:</h4>
-            <p> {plantDetails.watering}</p>
+            <div className="detail-property-container">
+              <h4 className="box-ttitle">Watering:</h4>
+              <p className="align-left"> {plantDetails.watering}</p>
             </div>
-            <div className="detail-property-container"> 
-            <h4>Soil type needed:</h4>
-            <p> {plantDetails.soilType}</p>
+            <div className="detail-property-container">
+              <h4 className="box-ttitle">Soil type needed:</h4>
+              <p className="align-left"> {plantDetails.soilType}</p>
             </div>
           </div>
-          
         </div>
       ) : (
         <p>Loading...</p>
       )}
     </div>
-    
   );
 }
 

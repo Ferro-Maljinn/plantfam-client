@@ -51,8 +51,10 @@ function AddPlantPage({ allPlants, setAllPlants, user }) {
       <div className="image-text-container">
         <img src="/plant-addplantpage.jpeg" alt="a.plant" />
         <div className="green-container">
-          <p>Add a plant that you want to trade or give away </p>
-        </div>
+        <div className="green-container"></div>
+          <p>Would you like to give away your plant to a new family? </p>
+        <div className="green-container">
+        </div></div>
       </div>
 
       <div className="form-and-image-container-row">
@@ -132,7 +134,7 @@ function AddPlantPage({ allPlants, setAllPlants, user }) {
         </form>
         <img
           className="body-plant-image"
-          src="https://media.istockphoto.com/photos/monstera-in-a-pot-isolated-on-white-background-close-up-of-tropical-picture-id1278906674?k=20&m=1278906674&s=612x612&w=0&h=udI6hjjVdHQl8VOfenSf4YSPObrcmruBMYeaL8SNVE4="
+          src="https://sc04.alicdn.com/kf/He861f20b07224d5ab9c018dea5bccf12u.jpg"
           alt="a.plant"
         />
       </div>

@@ -1,73 +1,71 @@
-
-
-.plant-details-container{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+.plant-details-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.details-page-gray-container{
-        top: 20%;
-        background-color: #5e5636;
-        /* border: 5px solid #ffe27b; */
-        width: 100vw;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        z-index: -10;
-      }
-
-.details-page-gray-container h1{
-    color: white;
-    text-transform: uppercase;
+.details-page-gray-container {
+  top: 20%;
+  background-color: #5e5636;
+  /* border: 5px solid #ffe27b; */
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: -10;
 }
 
-.details-page-gray-container p{
-    font-style: italic;
-    font-size: 1em;
+.details-page-gray-container h1 {
+  color: white;
+  text-transform: uppercase;
+}
+
+.details-page-gray-container p {
+  font-style: italic;
+  font-size: 1em;
 }
 
 .plant-details-body {
-    /* border: 5px solid #ffe27b; */
-   
-    box-shadow: 1px 1px 10pt 2pt #5e5636; 
-    position: absolute;
-    top: 60%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-left: 30%;
-    text-align: start;
-    width: 40%;
-    height: 45%;
+  box-shadow: 1px 1px 10pt 2pt #5e5636;
+  position: absolute;
+  top: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 10%;
+  text-align: start;
+  width: 80%;
+  min-height: 45%;
 }
 
-
 .detail-property-container {
-    /* border: 1px solid black; */
-    padding: 0 15% 0 15%;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    /* height: 70%; */
+  /* border: 1px solid black; */
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.box-ttitle {
+  width: 50%;
 }
 
 .detail-property-container p {
-    color: black;
-    font-size: 15px;
-    line-height: 24px;
-    text-decoration: underline 2px solid #5e5636;
-   max-width: 35%;
+  color: black;
+  font-size: 15px;
+  line-height: 24px;
+  text-decoration: underline 2px solid #5e5636;
+  /* max-width: 100%; */
+  width: 40%;
+}
+
+.align-left {
+  text-align: left;
 }
 
 .detail-property-container h4 {
-    color: black;
-    padding: 10px;
-
-    text-decoration: underline 2px solid #5e5636;
+  color: black;
+  padding: 10px;
+  text-decoration: underline 2px solid #5e5636;
 }
-
-
-
-
