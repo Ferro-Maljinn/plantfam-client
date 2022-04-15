@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { API_URL } from "../config";
 
-import { Button } from "antd";
-
 export default function UpdatePlant({ setAllPlants }) {
   console.log("rendering updateplant ")
   const navigate = useNavigate();
@@ -63,67 +61,90 @@ export default function UpdatePlant({ setAllPlants }) {
   };
 
   return (
-<>
-    <div className="image-text-container">
-    <img src={singlePlant.image} alt="a.plant" />
-    <div className="green-container">
-    <p> Edit Plant </p>
-    </div>
-    </div>
-    
-      <form className="form-container">
-        <label>Image</label>
-        <input
-          name="image"
-          value={singlePlant.image}
-          onChange={handleUpdateInput}
-        />
-        <label>Description</label>
-        <input
-          name="description"
-          value={singlePlant.description}
-          onChange={handleUpdateInput}
-        />
-        <label>English Name</label>
-        <input
-          name="englishName"
-          value={singlePlant.englishName}
-          onChange={handleUpdateInput}
-        />
-        <label>Latin Name</label>
-        <input
-          name="latinName"
-          value={singlePlant.latinName}
-          onChange={handleUpdateInput}
-        />
-        <label>Height</label>
-        <input
-          name="height"
-          value={singlePlant.height}
-          onChange={handleUpdateInput}
-        />
-        <label>Light intake</label>
-        <input
-          name="light"
-          value={singlePlant.light}
-          onChange={handleUpdateInput}
-        />
-        <label>Watering</label>
-        <input
-          name="watering"
-          value={singlePlant.watering}
-          onChange={handleUpdateInput}
-        />
-        <label>SoilType</label>
-        <input
-          name="soilType"
-          value={singlePlant.soilType}
-          onChange={handleUpdateInput}
-        />
-        <Button onClick={handleUpdatePlant} type="primary" htmlType="submit">
-          Edit Plant
-        </Button>
-      </form>
-      </>
+    <>
+      <div className="image-text-container">
+        <img src={singlePlant.image} alt="a.plant" />
+        <div className="green-container">
+          <p> Edit Plant </p>
+        </div>
+      </div>
+
+      <div className="form-and-image-container-row">
+        <form className="form-container">
+          <div className="input-container">
+            <label>Image</label>
+            <input
+              name="image"
+              value={singlePlant.image}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <div className="input-container">
+            <label>Description</label>
+            <input
+              name="description"
+              value={singlePlant.description}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <div className="input-container">
+            <label>English Name</label>
+            <input
+              name="englishName"
+              value={singlePlant.englishName}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <div className="input-container">
+            <label>Latin Name</label>
+            <input
+              name="latinName"
+              value={singlePlant.latinName}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <div className="input-container">
+            <label>Height</label>
+            <input
+              name="height"
+              value={singlePlant.height}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <div className="input-container">
+            <label>Light intake</label>
+            <input
+              name="light"
+              value={singlePlant.light}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <div className="input-container">
+            <label>Watering</label>
+            <input
+              name="watering"
+              value={singlePlant.watering}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <div className="input-container">
+            <label>SoilType</label>
+            <input
+              name="soilType"
+              value={singlePlant.soilType}
+              onChange={handleUpdateInput}
+            />
+          </div>
+          <button
+            className="add-plant-btn"
+            onClick={handleUpdatePlant}
+            type="primary"
+            htmlType="submit"
+          >
+            Edit Plant
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
