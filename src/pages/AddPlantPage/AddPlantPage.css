@@ -35,7 +35,7 @@
   .form-and-image-container-row {
   display: flex;
   flex-direction: row;
-  justify-content:;
+  justify-content: center;
   }
 
   .body-plant-image{
